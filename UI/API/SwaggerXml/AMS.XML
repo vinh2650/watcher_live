@@ -1,0 +1,2355 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API</name>
+    </assembly>
+    <members>
+        <member name="T:API.App_Start.AutofacConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:API.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:API.Startup.OAuthOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:API.Startup.ConfigureAuth(Owin.IAppBuilder,Autofac.Integration.WebApi.AutofacWebApiDependencyResolver)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="resolver"></param>
+        </member>
+        <member name="P:API.Startup.Container">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:API.Startup.Configuration(Owin.IAppBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="M:API.Startup.ConfigHangfire(Owin.IAppBuilder,Autofac.IContainer)">
+            <summary>
+            Configure Hangfire for running background task
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="T:API.SwaggerConfig">
+            <summary>
+            swagger configuration
+            </summary>
+        </member>
+        <member name="M:API.SwaggerConfig.Register">
+            <summary>
+            register swagger
+            </summary>
+        </member>
+        <member name="M:API.SwaggerConfig.GetXmlCommentsPath">
+            <summary>
+            get xml path comment
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:API.AuthTokenOperation">
+            <summary>
+            authentication token
+            </summary>
+        </member>
+        <member name="M:API.AuthTokenOperation.Apply(Swashbuckle.Swagger.SwaggerDocument,Swashbuckle.Swagger.SchemaRegistry,System.Web.Http.Description.IApiExplorer)">
+            <summary>
+            apply method
+            </summary>
+            <param name="swaggerDoc"></param>
+            <param name="schemaRegistry"></param>
+            <param name="apiExplorer"></param>
+        </member>
+        <member name="T:API.LoginResult">
+            <summary>
+            Login result
+            </summary>
+        </member>
+        <member name="P:API.LoginResult.access_token">
+            <summary>
+            access token
+            </summary>
+        </member>
+        <member name="P:API.LoginResult.token_type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:API.LoginResult.refresh_token">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:API.LoginResult.expires_in">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:API.LoginResult.client_id">
+            <summary>
+            as:client_id
+            </summary>
+        </member>
+        <member name="P:API.LoginResult.username">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:API.LoginResult.userId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:API.LoginResult.issued">
+            <summary>
+            .issued
+            </summary>
+        </member>
+        <member name="P:API.LoginResult.expires">
+            <summary>
+            expires
+            </summary>
+        </member>
+        <member name="M:API.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:API.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:API.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,API.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:API.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:API.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:API.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:API.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:API.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:API.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:API.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:API.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:API.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:API.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:API.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:API.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:API.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:API.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:API.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:API.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:API.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:API.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:API.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:API.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:API.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:API.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:API.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:API.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:API.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:API.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:API.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:API.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:API.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:API.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,API.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,API.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:API.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:API.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:API.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(API.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:API.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:API.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},API.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:API.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:API.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:API.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageSampleKey.#ctor(API.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:API.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:API.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,API.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:API.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:API.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:API.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:API.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:API.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:API.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:API.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:API.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:API.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:API.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:API.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:API.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:API.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:API.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:API.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:API.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:API.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="T:API.Controllers.BaseApiController">
+            <summary>
+            base api 
+            </summary>
+        </member>
+        <member name="F:API.Controllers.BaseApiController.PageNotFound">
+            <summary>
+            error 404
+            </summary>
+        </member>
+        <member name="F:API.Controllers.BaseApiController.PermissionDontHave">
+            <summary>
+            error 401
+            </summary>
+        </member>
+        <member name="F:API.Controllers.BaseApiController.ServerError">
+            <summary>
+            error 500
+            </summary>
+        </member>
+        <member name="F:API.Controllers.BaseApiController.NoContent">
+            <summary>
+            204
+            </summary>
+        </member>
+        <member name="F:API.Controllers.BaseApiController.ResponseSuccesss">
+            <summary>
+            200
+            </summary>
+        </member>
+        <member name="F:API.Controllers.BaseApiController.CreateSuccess">
+            <summary>
+            201
+            </summary>
+        </member>
+        <member name="M:API.Controllers.BaseApiController.Success(System.Object,System.Net.HttpStatusCode)">
+            <summary>
+            return success result
+            </summary>
+            <param name="data"></param>
+            <param name="statusCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.BaseApiController.Created(System.Object)">
+            <summary>
+            return created result
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.BaseApiController.Updated(System.Object)">
+            <summary>
+            return updated result
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.BaseApiController.Updated">
+            <summary>
+            return updated result
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.BaseApiController.Deleted">
+            <summary>
+            return deleted result
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.BaseApiController.Error(System.Object,System.Net.HttpStatusCode)">
+            <summary>
+            return error result
+            </summary>
+            <param name="data"></param>
+            <param name="statusCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.BaseApiController.Error(System.Exception)">
+            <summary>
+            return error result
+            </summary>
+            <param name="exception"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.BaseApiController.Error(System.Exception,System.Net.HttpStatusCode)">
+            <summary>
+            return error result
+            </summary>
+            <param name="exception"></param>
+            <param name="statusCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.BaseApiController.ValidateModel(System.Web.Http.ModelBinding.ModelStateDictionary)">
+            <summary>
+            validate model state
+            </summary>
+            <param name="modelState"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.BaseApiController.SuccesResult(System.String)">
+            <summary>
+            Prepair success result
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.BaseApiController.SuccesResult``1(``0,System.String)">
+            <summary>
+            prepare success result
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="data"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API.Controllers.V1.AccountV3Controller">
+            <summary>
+            Account Controller
+            </summary>
+        </member>
+        <member name="M:API.Controllers.V1.AccountV3Controller.#ctor(Microsoft.AspNet.Identity.UserManager{Core.Domain.Authentication.User},Service.Interface.Authentication.IAmsApplicationService,Service.Interface.Authentication.IUserService,API.Infrastructure.IWorkContext,Service.Interface.Authentication.IRoleService)">
+            <summary>
+            Account Controller
+            </summary>
+            <param name="userManager"></param>
+            <param name="amsApplicationService"></param>
+            <param name="userService"></param>
+            <param name="workContext"></param>
+            <param name="roleService"></param>
+        </member>
+        <member name="T:API.Controllers.V1.AccountV3Controller.RegisterResponse">
+            <summary>
+            Register result
+            </summary>
+        </member>
+        <member name="P:API.Controllers.V1.AccountV3Controller.RegisterResponse.UserSubmissionId">
+            <summary>
+            Temp user submission Id
+            </summary>
+        </member>
+        <member name="P:API.Controllers.V1.AccountV3Controller.RegisterResponse.RedirectUrl">
+            <summary>
+            Redirect Url to Payment on Chargify
+            </summary>
+        </member>
+        <member name="T:API.Controllers.V1.AccountV3Controller.ForgetPasswordResponse">
+            <summary>
+            Request new password result
+            </summary>
+        </member>
+        <member name="T:API.Controllers.V1.AccountV3Controller.ConfirmEmailResponse">
+            <summary>
+            Confirm Email response
+            </summary>
+        </member>
+        <member name="T:API.Controllers.V1.AccountV3Controller.InviteUserResponse">
+            <summary>
+            InviteUser Response
+            </summary>
+        </member>
+        <member name="T:API.Controllers.V1.AccountV3Controller.RegisterUserInviteResponse">
+            <summary>
+            RegisterUserInvite Response
+            </summary>
+        </member>
+        <member name="T:API.Controllers.V1.AccountV3Controller.GetAllUserResponse">
+            <summary>
+            GetAllUser response 
+            </summary>
+        </member>
+        <member name="P:API.Controllers.V1.AccountV3Controller.GetAllUserResponse.Data">
+            <summary>
+            user list
+            </summary>
+        </member>
+        <member name="M:API.Controllers.V1.AccountV3Controller.Logout">
+            <summary>
+            Logout
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.AccountV3Controller.GetUserInfo">
+            <summary>
+            get user info
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.AccountV3Controller.ForgotPassword(API.Models.ForgotPasswordResquest)">
+            <summary>
+            Forgot Password
+            </summary>
+            <remarks>
+             For native device, add "<span style='font-weight: bold;'>Authorization: Basic xxx</span>" into Header of request.<br />
+             For browser, add "<span style='font-weight: bold;'>client_id</span>" and "<span style='font-weight: bold;'>client_secret</span>" into body of request. <br />
+            </remarks>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.AccountV3Controller.ResetPassword(System.String,System.String)">
+            <summary>
+            Reset Password
+            </summary>
+            <param name="userId">userId</param>
+            <param name="code">code</param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.AccountV3Controller.ResetPassword(API.Models.ResetPasswordRequest)">
+            <summary>
+            Reset Password
+            </summary>
+            <remarks>
+             For native device, add "<span style='font-weight: bold;'>Authorization: Basic xxx</span>" into Header of request.<br />
+             For browser, add "<span style='font-weight: bold;'>client_id</span>" and "<span style='font-weight: bold;'>client_secret</span>" into body of request. <br />
+            </remarks>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.AccountV3Controller.ChangePassword(API.Models.ChangePasswordBindingModel)">
+            <summary>
+            Change password
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.AccountV3Controller.UpdateProfile(API.Models.Business.UserUpdate)">
+            <summary>
+            update User Profile
+            </summary>
+            <param name="userUpdateViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.AccountV3Controller.UpdateProfileAvatar">
+            <summary>
+            update user profile avatar
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.AccountV3Controller.CheckBaseToken(System.Func{Core.Domain.Authentication.AmsApplication,System.Threading.Tasks.Task{System.Web.Http.IHttpActionResult}})">
+            <summary>
+            
+            </summary>
+            <param name="authorizationValidFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API.Controllers.V1.CommonV3Controller">
+            <summary>
+            common api
+            </summary>
+        </member>
+        <member name="M:API.Controllers.V1.CommonV3Controller.#ctor(Service.Interface.Authentication.IAmsApplicationService,API.Infrastructure.IWorkContext,Service.Interface.Authentication.IUserService,Service.Interface.Search.INoisSearchEngine)">
+            <summary>
+            constructor common
+            </summary>
+            <param name="applicationService"></param>
+            <param name="workContext"></param>
+            <param name="userService"></param>
+            <param name="configurationProcessService"></param>
+            <param name="alarmRecordService"></param>
+            <param name="noisSearchEngine"></param>
+            <param name="mediaService"></param>
+        </member>
+        <member name="M:API.Controllers.V1.CommonV3Controller.Get(System.String)">
+            <summary>
+            get basic code
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.CommonV3Controller.GetUsersForNotification(System.String)">
+            <summary>
+            get list user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.CommonV3Controller.IndexData">
+            <summary>
+            Delete existing index and create anew with mappings
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:API.Controllers.V1.RelationshipController">
+            <summary>
+            Relationship controller
+            </summary>
+        </member>
+        <member name="M:API.Controllers.V1.RelationshipController.#ctor(Service.Interface.Authentication.IUserService,Service.Interface.Business.IRelationshipService,Service.Interface.Business.IRelationshipRequestService)">
+            <summary>
+            Ctor
+            </summary>
+            <param name="userService"></param>
+            <param name="workContext"></param>
+            <param name="roleService"></param>
+            <param name="relationshipService"></param>
+            <param name="relationshipRequestService"></param>
+        </member>
+        <member name="M:API.Controllers.V1.RelationshipController.CreateNewRelationship(API.Models.Business.RelationshipModel)">
+            <summary>
+            Create new relationship, return partner Id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.RelationshipController.ConfirmNewRelationship(System.String)">
+            <summary>
+            Create new relationship, return partner Id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.RelationshipController.GetAllPendingRequest">
+            <summary>
+            Get all pending request
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.RelationshipController.GetPendingRequestById(System.String)">
+            <summary>
+            Get request by Id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.RelationshipController.GetAllSentRequest">
+            <summary>
+            Get all sent request
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.RelationshipController.DeleteRelationshipById(System.String)">
+            <summary>
+            Delete a relationship
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.RelationshipController.DeleteRelationshipByPartnerId(System.String)">
+            <summary>
+            Delete relationship by partner Id
+            </summary>
+            <param name="partnerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.RelationshipController.GetAllRelationship">
+            <summary>
+            Get all of user relationship
+            </summary>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:API.Controllers.V1.RelationshipController.GetAllRelationshipByType(Core.Domain.Business.Relationshiptype)" -->
+        <member name="T:API.Controllers.V1.UserController">
+            <summary>
+            User controller
+            </summary>
+        </member>
+        <member name="M:API.Controllers.V1.UserController.#ctor(Service.Interface.Authentication.IUserService,Service.Interface.Authentication.IRoleService,Microsoft.AspNet.Identity.UserManager{Core.Domain.Authentication.User},API.Infrastructure.IWorkContext)">
+            <summary>
+            Ctor
+            </summary>
+            <param name="userService"></param>
+            <param name="roleService"></param>
+            <param name="userManager"></param>
+            <param name="workContext"></param>
+        </member>
+        <member name="M:API.Controllers.V1.UserController.Regsiter(API.Models.Business.UserCreate)">
+            <summary>
+            Register a new user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:API.Filters.ValidateRefreshTokenEverywhereAttribute">
+            <summary>
+            Use for checking user with claim
+            </summary>
+        </member>
+        <member name="T:API.Helpers.ClaimName">
+            <summary>
+            ClaimName
+            </summary>
+        </member>
+        <member name="M:API.Helpers.ConvertTimeHelper.ConvertFromUnixTimestamp(System.Double)">
+            <summary>
+            Convert Unix timestamp to datetime
+            </summary>
+            <param name="timestamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Helpers.ConvertTimeHelper.ConvertToUnixTimestamp(System.DateTime)">
+            <summary>
+            Convert datetime to Unix timestamp
+            </summary>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API.Helpers.GenericPrincipalExtensions">
+            <summary>
+            Static class for getting principal
+            </summary>
+        </member>
+        <member name="M:API.Helpers.GenericPrincipalExtensions.GetValueOfClaim(System.Security.Principal.IPrincipal,System.String)">
+            <summary>
+            Get value of claim
+            </summary>
+            <param name="user"></param>
+            <param name="claimName"></param>
+            <returns></returns>
+        </member>
+        <member name="P:API.Infrastructure.IWorkContext.CurrentUser">
+            <summary>
+            Current user, use for getting quickly in code
+            </summary>
+        </member>
+        <member name="P:API.Infrastructure.IWorkContext.CurrentUsername">
+            <summary>
+            current user name
+            </summary>
+        </member>
+        <member name="P:API.Infrastructure.IWorkContext.CurrentRoles">
+            <summary>
+            the roles of current user.
+            </summary>
+        </member>
+        <member name="T:API.Infrastructure.ValidateRolePermissionAttribute">
+            <summary>
+            Use for checking user has role in claim or not
+            </summary>
+        </member>
+        <member name="P:API.Infrastructure.ValidateRolePermissionAttribute.RoleClaim">
+            <summary>
+            RoleClaim
+            </summary>
+        </member>
+        <member name="M:API.Infrastructure.ValidateRolePermissionAttribute.OnActionExecuting(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            OnActionExecuting
+            </summary>
+            <param name="actionContext"></param>
+        </member>
+        <member name="T:API.Infrastructure.WorkContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:API.Infrastructure.WorkContext.#ctor(Microsoft.Owin.IOwinContext,Service.Interface.Authentication.IUserService,Service.Interface.Authentication.IRoleService)">
+            <summary>
+            
+            </summary>
+            <param name="owinContext"></param>
+            <param name="userService"></param>
+            <param name="roleService"></param>
+        </member>
+        <member name="P:API.Infrastructure.WorkContext.CurrentUser">
+            <summary>
+            Current user, use for getting quickly in code
+            </summary>
+        </member>
+        <member name="P:API.Infrastructure.WorkContext.CurrentUsername">
+            <summary>
+            current user name
+            </summary>
+        </member>
+        <member name="P:API.Infrastructure.WorkContext.CurrentRoles">
+            <summary>
+            the roles of current user.
+            </summary>
+        </member>
+        <member name="P:API.Models.RegisterBindingModel.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:API.Models.RegisterBindingModel.FirstName">
+            <summary>
+            FirstName
+            </summary>
+        </member>
+        <member name="P:API.Models.RegisterBindingModel.LastName">
+            <summary>
+            LastName
+            </summary>
+        </member>
+        <member name="P:API.Models.RegisterBindingModel.Password">
+            <summary>
+            Password
+            </summary>
+        </member>
+        <member name="P:API.Models.RegisterBindingModel.ConfirmPassword">
+            <summary>
+            Confirm Password
+            </summary>
+        </member>
+        <member name="P:API.Models.RegisterBindingModel.PhoneNumber">
+            <summary>
+            PhoneNumber
+            </summary>
+        </member>
+        <member name="T:API.Models.UserInfo">
+            <summary>
+            user info result
+            </summary>
+        </member>
+        <member name="M:API.Models.UserInfo.#ctor">
+            <summary>
+            constructor user info
+            </summary>
+        </member>
+        <member name="P:API.Models.UserInfo.Id">
+            <summary>
+            id of user
+            </summary>
+        </member>
+        <member name="P:API.Models.UserInfo.UserName">
+            <summary>
+            username of user
+            </summary>
+        </member>
+        <member name="P:API.Models.UserInfo.FirstName">
+            <summary>
+            firstname of user
+            </summary>
+        </member>
+        <member name="P:API.Models.UserInfo.LastName">
+            <summary>
+            lastname of user
+            </summary>
+        </member>
+        <member name="P:API.Models.UserInfo.Email">
+            <summary>
+            email of user
+            </summary>
+        </member>
+        <member name="P:API.Models.UserInfo.PhoneNumber">
+            <summary>
+            phonenumber of user
+            </summary>
+        </member>
+        <member name="P:API.Models.UserInfo.Library">
+            <summary>
+            library of user
+            </summary>
+        </member>
+        <member name="P:API.Models.UserInfo.Permissions">
+            <summary>
+            permissions of user
+            </summary>
+        </member>
+        <member name="P:API.Models.UserInfo.OndemandStatus">
+            <summary>
+            OndemandStatus
+            </summary>
+        </member>
+        <member name="P:API.Models.UserInfo.DefaultLocation">
+            <summary>
+            DefaultLocation of BTS
+            </summary>
+        </member>
+        <member name="T:API.Models.CheckingOndemandStatus">
+            <summary>
+            Ondemand request status
+            </summary>
+        </member>
+        <member name="P:API.Models.CheckingOndemandStatus.Message">
+            <summary>
+            Message that will be display to customer
+            </summary>
+        </member>
+        <member name="P:API.Models.CheckingOndemandStatus.Status">
+            <summary>
+            Current status of on-demand request
+            </summary>
+        </member>
+        <member name="P:API.Models.CheckingOndemandStatus.CompletingDateTimeUtc">
+            <summary>
+            The time that on-demand will or be completed
+            </summary>
+        </member>
+        <member name="P:API.Models.CheckingOndemandStatus.LastEventTimeUtc">
+            <summary>
+            The last time that event come to SA when user try to upload file into our system
+            </summary>
+        </member>
+        <member name="T:API.Models.OndemandStatusEnum">
+            <summary>
+            Status of ondemand checking
+            </summary>
+        </member>
+        <member name="F:API.Models.OndemandStatusEnum.NotUpload">
+            <summary>
+            Not upload before
+            </summary>
+        </member>
+        <member name="F:API.Models.OndemandStatusEnum.Pending">
+            <summary>
+            Pending
+            </summary>
+        </member>
+        <member name="F:API.Models.OndemandStatusEnum.Processing">
+            <summary>
+            Processing
+            </summary>
+        </member>
+        <member name="F:API.Models.OndemandStatusEnum.Success">
+            <summary>
+            Success
+            </summary>
+        </member>
+        <member name="F:API.Models.OndemandStatusEnum.Failed">
+            <summary>
+            Failed
+            </summary>
+        </member>
+        <member name="T:API.Models.LibraryModel">
+            <summary>
+            library model
+            </summary>
+        </member>
+        <member name="M:API.Models.LibraryModel.#ctor">
+            <summary>
+            constructor library model
+            </summary>
+        </member>
+        <member name="P:API.Models.LibraryModel.Id">
+            <summary>
+            id of library
+            </summary>
+        </member>
+        <member name="P:API.Models.LibraryModel.Name">
+            <summary>
+            name of library
+            </summary>
+        </member>
+        <member name="P:API.Models.LibraryModel.Band">
+            <summary>
+            band of library
+            </summary>
+        </member>
+        <member name="P:API.Models.LibraryModel.Organization">
+            <summary>
+            organization
+            </summary>
+        </member>
+        <member name="T:API.Models.OrganizationModel">
+            <summary>
+            organization mode
+            </summary>
+        </member>
+        <member name="P:API.Models.OrganizationModel.Id">
+            <summary>
+            id of organization
+            </summary>
+        </member>
+        <member name="P:API.Models.OrganizationModel.Domain">
+            <summary>
+            domain of organization
+            </summary>
+        </member>
+        <member name="P:API.Models.OrganizationModel.Customer">
+            <summary>
+            customer
+            </summary>
+        </member>
+        <member name="T:API.Models.CustomerModel">
+            <summary>
+            customer mode
+            </summary>
+        </member>
+        <member name="P:API.Models.CustomerModel.Id">
+            <summary>
+            id of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.CustomerModel.FirstName">
+            <summary>
+            firstname of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.CustomerModel.LastName">
+            <summary>
+            lastname of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.CustomerModel.Email">
+            <summary>
+            email of customer
+            </summary>
+        </member>
+        <member name="T:API.Models.ForgotPasswordResquest">
+            <summary>
+            ForgotPassword resquest
+            </summary>
+        </member>
+        <member name="P:API.Models.ForgotPasswordResquest.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="T:API.Models.ResetPasswordRequest">
+            <summary>
+            ResetPassword request
+            </summary>
+        </member>
+        <member name="P:API.Models.ResetPasswordRequest.UserId">
+            <summary>
+            UserId
+            </summary>
+        </member>
+        <member name="P:API.Models.ResetPasswordRequest.Password">
+            <summary>
+            Password
+            </summary>
+        </member>
+        <member name="P:API.Models.ResetPasswordRequest.ConfirmPassword">
+            <summary>
+            ConfirmPassword
+            </summary>
+        </member>
+        <member name="P:API.Models.ResetPasswordRequest.Code">
+            <summary>
+            Code
+            </summary>
+        </member>
+        <member name="T:API.Models.LocationResponse">
+            <summary>
+            Location response
+            </summary>
+        </member>
+        <member name="P:API.Models.LocationResponse.Lat">
+            <summary>
+            Lat
+            </summary>
+        </member>
+        <member name="P:API.Models.LocationResponse.Lon">
+            <summary>
+            Lon
+            </summary>
+        </member>
+        <member name="T:API.Models.UserInfoForNotificationViewModel">
+            <summary>
+            Store user info for post
+            </summary>
+        </member>
+        <member name="P:API.Models.UserInfoForNotificationViewModel.Id">
+            <summary>
+            Id of user
+            </summary>
+        </member>
+        <member name="P:API.Models.UserInfoForNotificationViewModel.Username">
+            <summary>
+            Username
+            </summary>
+        </member>
+        <member name="P:API.Models.UserInfoForNotificationViewModel.Email">
+            <summary>
+            Email of user
+            </summary>
+        </member>
+        <member name="P:API.Models.UserInfoForNotificationViewModel.FirstName">
+            <summary>
+            first name of user
+            </summary>
+        </member>
+        <member name="P:API.Models.UserInfoForNotificationViewModel.LastName">
+            <summary>
+            last name of user
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.CustomerCreate">
+            <summary>
+            create or update customer model
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerCreate.Email">
+            <summary>
+            email of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerCreate.FirstName">
+            <summary>
+            first name of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerCreate.LastName">
+            <summary>
+            last name of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerCreate.PhoneNumber">
+            <summary>
+            phone number of customer
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.CustomerCreateResult">
+            <summary>
+            create or update customer result
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerCreateResult.Id">
+            <summary>
+            id of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerCreateResult.Email">
+            <summary>
+            email of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerCreateResult.FirstName">
+            <summary>
+            first name of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerCreateResult.LastName">
+            <summary>
+            last name of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerCreateResult.PhoneNumber">
+            <summary>
+            phone number of customer
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.CustomerUpdate">
+            <summary>
+            create or update customer model
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerUpdate.FirstName">
+            <summary>
+            first name of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerUpdate.LastName">
+            <summary>
+            last name of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerUpdate.PhoneNumber">
+            <summary>
+            phone number of customer
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.CustomerGetResult">
+            <summary>
+            get customer result
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerGetResult.Id">
+            <summary>
+            id of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerGetResult.Email">
+            <summary>
+            email of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerGetResult.FirstName">
+            <summary>
+            first name of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerGetResult.LastName">
+            <summary>
+            last name of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerGetResult.PhoneNumber">
+            <summary>
+            phone number of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerGetResult.OrganizationId">
+            <summary>
+            organization id of customer
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.CustomerGetAllResult">
+            <summary>
+            get all customer result
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerGetAllResult.Id">
+            <summary>
+            id of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerGetAllResult.Email">
+            <summary>
+            email of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerGetAllResult.FirstName">
+            <summary>
+            first name of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerGetAllResult.LastName">
+            <summary>
+            last name of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerGetAllResult.PhoneNumber">
+            <summary>
+            phone number of customer
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.CustomerGetAllResult.OrganizationId">
+            <summary>
+            organization id of customer
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.GetMessageResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:API.Models.Business.GetMessageResult.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetMessageResult.Records">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetMessageResult.Messages">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetMessageResult.OtherMessagesData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.OtherMessagesData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.OtherMessagesData.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.OtherMessagesData.Total">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.GetNotificationResults">
+            <summary>
+            ViewModel GetPostResults
+            </summary>
+        </member>
+        <member name="M:API.Models.Business.GetNotificationResults.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetNotificationResults.Id">
+            <summary>
+            Id Post result
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetNotificationResults.Author">
+             <summary>
+            name author
+             </summary>
+        </member>
+        <member name="P:API.Models.Business.GetNotificationResults.Subject">
+            <summary>
+             subject
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetNotificationResults.To">
+            <summary>
+            list assigned
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetNotificationResults.Message">
+            <summary>
+            message
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetNotificationResults.CreatedDate">
+            <summary>
+            create time
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetNotificationResults.Total">
+            <summary>
+            total
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetNotificationResults.AttachmentList">
+            <summary>
+            attachmentList
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetNotificationResults.UserId">
+            <summary>
+            user
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.AssignedModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.AssignedModel.UserId">
+            <summary>
+            userId
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.AssignedModel.Name">
+            <summary>
+            name
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.AssignedModel.Email">
+            <summary>
+            email
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.GetReplyResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:API.Models.Business.GetReplyResult.#ctor">
+            <summary>
+            init contructor
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetReplyResult.Records">
+            <summary>
+            record
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetReplyResult.Replies">
+            <summary>
+            list replie
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.GetCommentResult">
+            <summary>
+            class GetCommentResult
+            </summary>
+        </member>
+        <member name="M:API.Models.Business.GetCommentResult.#ctor">
+            <summary>
+            contructor
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetCommentResult.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetCommentResult.Author">
+            <summary>
+            Author
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetCommentResult.Message">
+            <summary>
+            Message
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetCommentResult.CreatedDate">
+            <summary>
+            CreatedDate
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetCommentResult.AttachmentList">
+            <summary>
+            AttachmentList
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetCommentResult.UserId">
+            <summary>
+            id of user
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.NotificationModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.NotificationModel.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.NotificationModel.Subject">
+            <summary>
+            Subject
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.NotificationModel.Content">
+            <summary>
+            Content
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.NotificationModel.CreatedDate">
+            <summary>
+            CreatedDate
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.NotificationModel.User">
+            <summary>
+            User
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.UserNotificationModel">
+            <summary>
+            class UserPostModel
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserNotificationModel.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserNotificationModel.FirstName">
+            <summary>
+            FirstName
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserNotificationModel.LastName">
+            <summary>
+            LastName
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserNotificationModel.Avatar">
+            <summary>
+            Avatar
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.WriteNotificationModel">
+            <summary>
+            Write Post view model
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.WriteNotificationModel.ObjectName">
+            <summary>
+            Object name, bts name or cell name
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.WriteNotificationModel.Subject">
+            <summary>
+            Subject
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.WriteNotificationModel.Content">
+            <summary>
+            Content
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.WriteNotificationModel.AttachmentList">
+            <summary>
+            AttachmentList
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.WriteNotificationModel.AssignedList">
+            <summary>
+            AssignedList
+            </summary>
+        </member>
+        <member name="M:API.Models.Business.WriteNotificationModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.WriteNotificationFromEmailModel">
+            <summary>
+            Write post from email view model
+            </summary>
+        </member>
+        <member name="M:API.Models.Business.WriteNotificationFromEmailModel.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.WriteNotificationFromEmailModel.Subject">
+            <summary>
+            Subject
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.WriteNotificationFromEmailModel.Content">
+            <summary>
+            Content
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.WriteNotificationFromEmailModel.AttachmentList">
+            <summary>
+            AttachmentList
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.WriteNotificationFromEmailModel.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.WriteCommentModel">
+            <summary>
+            class WriteCommentModel
+            </summary>
+        </member>
+        <member name="M:API.Models.Business.WriteCommentModel.#ctor">
+            <summary>
+            contructor WriteCommentModel()
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.WriteCommentModel.NotificationId">
+            <summary>
+            PostId
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.WriteCommentModel.Content">
+            <summary>
+            Content
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.WriteCommentModel.Subject">
+            <summary>
+            Subject
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.WriteCommentModel.AttachmentList">
+            <summary>
+            AttachmentList
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.WriteCommentFromEmailModel">
+            <summary>
+            class WriteCommentFromEmailModel
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.WriteCommentFromEmailModel.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.GetMessageOfCell">
+            <summary>
+            get message of cell
+            </summary>
+        </member>
+        <member name="M:API.Models.Business.GetMessageOfCell.#ctor">
+            <summary>
+            contructor
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetMessageOfCell.Total">
+            <summary>
+            total message
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetMessageOfCell.CellName">
+            <summary>
+            cell Name
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetMessageOfCell.Messages">
+            <summary>
+            messages
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.MessageForGetMessageOfCell">
+            <summary>
+            message for get message of cell
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.MessageForGetMessageOfCell.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.MessageForGetMessageOfCell.OwnerId">
+            <summary>
+            OwnerId 
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.MessageForGetMessageOfCell.Content">
+            <summary>
+            Content
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.MessageForGetMessageOfCell.Subject">
+            <summary>
+            subject
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.MessageForGetMessageOfCell.AttachmentList">
+            <summary>
+            AttachmentList
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.MessageForGetMessageOfCell.UpdatedDateUtc">
+            <summary>
+            UpdatedDateUtc
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.GetNotificationByCellnameRequest">
+            <summary>
+            Get Notification By Cell Name Request Model
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetNotificationByCellnameRequest.CellName">
+            <summary>
+            CellName
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetNotificationByCellnameRequest.Skip">
+            <summary>
+            Skip Post
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetNotificationByCellnameRequest.Take">
+            <summary>
+            Take Post
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.RelationshipModel">
+            <summary>
+            Model of Reletionship
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.RelationshipModel.ToUserId">
+            <summary>
+            To user id
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.RelationshipModel.Type">
+            <summary>
+            Type of the relationship
+            0 - Family
+            1 - Friend
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.RoleGetResult">
+            <summary>
+            get role result
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.RoleGetResult.Id">
+            <summary>
+            id of role
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.RoleGetResult.Name">
+            <summary>
+            system name of role
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.UserCreate">
+            <summary>
+            create or update user model
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserCreate.Email">
+            <summary>
+            email of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserCreate.FirstName">
+            <summary>
+            first name of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserCreate.LastName">
+            <summary>
+            last name of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserCreate.PhoneNumber">
+            <summary>
+            phone number of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserCreate.OrganizationDestinationId">
+            <summary>
+            organization destination id of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserCreate.Passwords">
+            <summary>
+            Passwords
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserCreate.ConfirmPasswords">
+            <summary>
+            Confirm password
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.UserCreateResult">
+            <summary>
+            create or update user result
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserCreateResult.Id">
+            <summary>
+            id of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserCreateResult.Email">
+            <summary>
+            email of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserCreateResult.FirstName">
+            <summary>
+            first name of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserCreateResult.LastName">
+            <summary>
+            last name of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserCreateResult.PhoneNumber">
+            <summary>
+            phone number of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserCreateResult.OrganizationDestinationId">
+            <summary>
+            organization destination id of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserCreateResult.Role">
+            <summary>
+            role of user
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.UserUpdate">
+            <summary>
+            create or update user model
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserUpdate.FirstName">
+            <summary>
+            first name of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserUpdate.LastName">
+            <summary>
+            last name of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserUpdate.PhoneNumber">
+            <summary>
+            phone number of user
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.UserGetResult">
+            <summary>
+            get user result
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserGetResult.Id">
+            <summary>
+            id of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserGetResult.Email">
+            <summary>
+            email of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserGetResult.FirstName">
+            <summary>
+            first name of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserGetResult.LastName">
+            <summary>
+            last name of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserGetResult.PhoneNumber">
+            <summary>
+            phone number of user
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.UserGetAllResult">
+            <summary>
+            get all user result
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserGetAllResult.Id">
+            <summary>
+            id of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserGetAllResult.Email">
+            <summary>
+            email of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserGetAllResult.FirstName">
+            <summary>
+            first name of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserGetAllResult.LastName">
+            <summary>
+            last name of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserGetAllResult.PhoneNumber">
+            <summary>
+            phone number of user
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.UserGetAllResult.Role">
+            <summary>
+            role of user
+            </summary>
+        </member>
+        <member name="P:API.Models.CellKpiModel.CreateDateTimeUtc">
+            <summary>
+            InDateUtc
+            </summary>
+        </member>
+        <member name="P:API.Models.CellKpiModel.CellId">
+            <summary>
+            Cell Id, 
+            </summary>
+        </member>
+        <member name="T:API.Models.JsonResult">
+            <summary>
+            Base response result
+            </summary>
+        </member>
+        <member name="P:API.Models.JsonResult.ErrorMessages">
+            <summary>
+            List error as string
+            </summary>
+        </member>
+        <member name="M:API.Models.JsonResult.#ctor">
+            <summary>
+            Base Json result
+            </summary>
+        </member>
+        <member name="M:API.Models.JsonResult.AddError(System.Web.Http.ModelBinding.ModelStateDictionary)">
+            <summary>
+            
+            </summary>
+            <param name="modelState"></param>
+        </member>
+        <member name="T:API.Providers.CustomAuthorizationServerProvider">
+            <summary>
+            Custom Authorization Server Provider
+            </summary>
+        </member>
+        <member name="M:API.Providers.CustomAuthorizationServerProvider.#ctor(System.Func{Service.Interface.Authentication.IAmsApplicationService},System.Func{Service.Interface.Authentication.IUserService},System.Func{Service.Interface.Authentication.IRefreshTokenService})">
+            <summary>
+            Ctor
+            </summary>
+            <param name="amsApplicationService"></param>
+            <param name="userService"></param>
+            <param name="refreshTokenService"></param>
+        </member>
+        <member name="M:API.Providers.CustomAuthorizationServerProvider.ValidateClientAuthentication(Microsoft.Owin.Security.OAuth.OAuthValidateClientAuthenticationContext)">
+            <summary>
+            Validate CLient
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Providers.CustomAuthorizationServerProvider.GrantResourceOwnerCredentials(Microsoft.Owin.Security.OAuth.OAuthGrantResourceOwnerCredentialsContext)">
+            <summary>
+            Grant Resource 
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Providers.CustomAuthorizationServerProvider.TokenEndpoint(Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext)">
+            <summary>
+            Token endpoint
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Providers.CustomAuthorizationServerProvider.GrantRefreshToken(Microsoft.Owin.Security.OAuth.OAuthGrantRefreshTokenContext)">
+            <summary>
+            Grant refresh token
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API.Providers.CustomRefreshTokenProvider">
+            <summary>
+            Represent custom refresh token provider
+            </summary>
+        </member>
+        <member name="M:API.Providers.CustomRefreshTokenProvider.ReceiveAsync(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenReceiveContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API.Providers.MachineKeyProtectionProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:API.Providers.MachineKeyProtectionProvider.Create(System.String[])">
+            <summary>
+            Create
+            </summary>
+            <param name="purposes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API.Providers.MachineKeyDataProtector">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:API.Providers.MachineKeyDataProtector.#ctor(System.String[])">
+            <summary>
+            Ctor
+            </summary>
+            <param name="purposes"></param>
+        </member>
+        <member name="M:API.Providers.MachineKeyDataProtector.Protect(System.Byte[])">
+            <summary>
+            Protect
+            </summary>
+            <param name="userData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Providers.MachineKeyDataProtector.Unprotect(System.Byte[])">
+            <summary>
+            Unprotect
+            </summary>
+            <param name="protectedData"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API.Results.Deleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:API.Results.Deleted.Request">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:API.Results.Deleted.#ctor(System.Web.Http.ApiController)">
+            <summary>
+            
+            </summary>
+            <param name="controller"></param>
+        </member>
+        <member name="M:API.Results.Deleted.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API.Results.Created">
+            <summary>
+            Created Result, usually used for POST
+            </summary>
+        </member>
+        <member name="P:API.Results.Created.Request">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:API.Results.Created.#ctor(System.Web.Http.ApiController,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="controller"></param>
+            <param name="responseData"></param>
+        </member>
+        <member name="M:API.Results.Created.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API.Results.Success">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:API.Results.Success.Request">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:API.MyRestrictiveAuthorizationFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:API.Validations.Business.UserCreateValidator">
+            <summary>
+            the validator class of UserCreate
+            </summary>
+        </member>
+        <member name="M:API.Validations.Business.UserCreateValidator.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="T:API.Validations.Business.CustomerCreateValidator">
+            <summary>
+            the validator class of CustomerCreate
+            </summary>
+        </member>
+        <member name="M:API.Validations.Business.CustomerCreateValidator.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="T:API.Validations.Business.CustomerUpdateValidator">
+            <summary>
+            the validator class of CustomerUpdate
+            </summary>
+        </member>
+        <member name="M:API.Validations.Business.CustomerUpdateValidator.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="T:API.Validations.Business.UserUpdateValidator">
+            <summary>
+            the validator class of UserUpdate
+            </summary>
+        </member>
+        <member name="M:API.Validations.Business.UserUpdateValidator.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="T:API.Validations.Business.WriteNotificationValidate">
+            <summary>
+            Validate Write Notification Validate
+            </summary>
+        </member>
+        <member name="M:API.Validations.Business.WriteNotificationValidate.#ctor">
+            <summary>
+             Validate Write Notification Validate
+            </summary>
+        </member>
+    </members>
+</doc>

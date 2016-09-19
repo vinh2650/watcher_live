@@ -1,0 +1,12 @@
+﻿//add entity
+Add-Migration -StartUpProjectName API -verbose -ProjectName 2.Data CreateOrganizationEntity
+Add-Migration -StartUpProjectName API -verbose -ProjectName 2.Data UpdateCellKpi
+
+
+
+//update database
+Update-database -StartUpProjectName API -verbose -ProjectName 2.Data
+
+//update database to specified target
+
+Update-database -StartUpProjectName API -verbose -ProjectName 2.Data -TargetMigration:"CreateOrganizationEntity"

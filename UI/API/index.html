@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.7/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.8.2/lodash.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.0/moment.js"></script>
+    <style type="text/css">
+        .container {
+        }
+    </style>
+</head>
+
+<body ng-app="myApp" ng-controller="mainController">
+<table class="table table-hover" ng-show="!selected">
+    <tr>
+        <th>Cell ID</th>
+        <th>Last Alarm</th>
+        <th>Last Update</th>
+    </tr>
+    <tr ng-repeat="r in data" ng-click="s(r)">
+        <td ng-bind="r.CellId"></td>
+        <td ng-bind="r.LastAlarm"></td>
+        <td ng-bind="roundTimeQuarterHour(r.LastUpdatedDateTime)"></td>
+    </tr>
+</table>
+<div ng-if="selected" class="container-fluld">
+    <div class="row">
+        <table class="table">
+            <tr>
+                <td></td>
+                <td ng-bind="selected.CellId"></td>
+                <td ng-bind="selected.LastAlarm"></td>
+                <td ng-bind="roundTimeQuarterHour(selected.LastUpdatedDateTime)"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <canvas class="container" width="1020" height="160">
+            </canvas>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12">
+            <button class="btn btn-primary btn-xs" ng-click="back()">Back</button>
+        </div>
+    </div>
+</div>
+<script>
+    //    $.ajax('http://amsbackend.azurewebsites.net/api/cell/all',{
+    //        method: 'GET',
+    //        success: function(){
+    //        }
+    //    });
+    angular.module('myApp', []).controller('mainController', ['$http', '$scope',
+        function ($http, $scope) {
+            $http.get('http://amsbackend.azurewebsites.net/api/cell/all').then(function (resp) {
+                $scope.data = resp.data;
+            });
+            function n(n) {
+                return n > 9 ? "" + n : "0" + n;
+            }
+            $scope.roundTimeQuarterHour = function(time) {
+                var timeToReturn = new Date(time);
+
+                timeToReturn.setMilliseconds(Math.floor(timeToReturn.getMilliseconds() / 1000) * 1000);
+                timeToReturn.setSeconds(Math.round(timeToReturn.getSeconds() / 60) * 60);
+                timeToReturn.setMinutes(Math.round(timeToReturn.getMinutes() / 15) * 15);
+                return  moment(timeToReturn).format('DD-MM-YYYY hh:mm A Z')
+            };
+            $scope.render = function (sub) {
+                var newData = _.map(sub, function (s) {
+                    return {
+                        message: s.LastAlarm,
+                        date: n(new Date(s.LastUpdatedDateTime).getHours()) + ':' + n(new Date(s.LastUpdatedDateTime).getMinutes())
+                    }
+                });
+                count = 12;
+                var currentHour = new Date().getHours();
+                var currentMinute = new Date().getMinutes();
+                var times = [];
+                var tH = currentHour, dM = 15, tM = Math.floor(currentMinute / dM) * dM;
+                if (tM == 60) {
+                    tM = 0;
+                    tH++;
+                }
+                for (var i = 0; i < count-1; i++) {
+                    times.unshift({
+                        t: n(tH) + ':' + n(tM)
+                    });
+                    tM -= dM;
+                    if (tM < 0) {
+                        tM = 45;
+                        tH--;
+                    }
+                }
+
+                var newDateObj = new Date();
+                newDateObj.setTime(new Date().getTime() + (15 * 60 * 1000));
+                times.push({
+                    t: n(newDateObj.getHours()) + ':' + n(Math.floor(newDateObj.getMinutes()/dM)*dM),
+                    hide: true
+                });
+                debugger;
+                var ctx = document.querySelector(".container").getContext("2d");
+                var width = $('.container').width() - 20;
+                var widthPerObj = width / count;
+                ctx.beginPath();
+                ctx.moveTo(20, 150);
+                ctx.strokeStyle = 'black';
+                ctx.lineWidth = 0.5;
+                ctx.lineTo(width, 150);
+                ctx.stroke();
+                for (var i = 0; i < times.length; i++) {
+                    var pos = widthPerObj * i + 20;
+                    ctx.beginPath();
+                    ctx.moveTo(pos, 0);
+                    ctx.lineTo(pos, 150);
+                    ctx.stroke();
+                    ctx.textAlign = "center";
+                    ctx.fillText(times[i].t, pos, 160);
+                    var o = _.find(newData, {date: times[i].t});
+                    if (o && o.message) {
+                        ctx.strokeStyle = 'black';
+                        ctx.fillText('MIMO', pos, 100);
+                    }else{
+                        if(!times[i].hide){
+                            ctx.fillStyle="black";
+                            ctx.fillRect(pos-10,120,20,10);
+                        }
+                    }
+                }
+            };
+            $scope.back = function(){
+                $scope.selected = null;
+            };
+            $scope.s = function (r) {
+                $scope.selected = r;
+                $http.get('http://amsbackend.azurewebsites.net/api/cell/getbyid?cellId=' + r.CellId).then(function (resp) {
+                    $scope.sub = resp.data;
+                    $scope.render(resp.data);
+                })
+            }
+
+        }]);
+</script>
+</body>
+</html>

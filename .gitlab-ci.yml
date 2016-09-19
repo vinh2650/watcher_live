@@ -1,0 +1,16 @@
+variables:
+  Solution: AmsSolution.sln
+
+before_script:
+  - "echo off"
+stages:
+  - build
+build:
+  stage: build
+  script:
+  - echo restoring nuget...
+  - nuget restore AmsSolution.sln
+  - echo building...
+  - 'msbuild.exe "%Solution%" /p:Configuration=gitlabrunner /p:Platform="Any CPU"'
+  except:
+  - tags
