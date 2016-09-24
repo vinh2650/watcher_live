@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AmsWindowService", "AmsWind
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScanAndReplyEmailService", "UI\AmsWindowService\ScanAndReplyEmailService\ScanAndReplyEmailService.csproj", "{9C5CF151-CB43-4FA2-A3BC-6D55249C4781}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.MemberShip", "Library\MemberShip\5.MemberShip.csproj", "{035ADBA3-EBEE-4988-A5BA-7373D3B7A409}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CI|Any CPU = CI|Any CPU
@@ -90,6 +92,16 @@ Global
 		{9C5CF151-CB43-4FA2-A3BC-6D55249C4781}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9C5CF151-CB43-4FA2-A3BC-6D55249C4781}.ReleaseAzure|Any CPU.ActiveCfg = Release|Any CPU
 		{9C5CF151-CB43-4FA2-A3BC-6D55249C4781}.ReleaseAzure|Any CPU.Build.0 = Release|Any CPU
+		{035ADBA3-EBEE-4988-A5BA-7373D3B7A409}.CI|Any CPU.ActiveCfg = CI|Any CPU
+		{035ADBA3-EBEE-4988-A5BA-7373D3B7A409}.CI|Any CPU.Build.0 = CI|Any CPU
+		{035ADBA3-EBEE-4988-A5BA-7373D3B7A409}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{035ADBA3-EBEE-4988-A5BA-7373D3B7A409}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{035ADBA3-EBEE-4988-A5BA-7373D3B7A409}.gitlabrunner|Any CPU.ActiveCfg = gitlabrunner|Any CPU
+		{035ADBA3-EBEE-4988-A5BA-7373D3B7A409}.gitlabrunner|Any CPU.Build.0 = gitlabrunner|Any CPU
+		{035ADBA3-EBEE-4988-A5BA-7373D3B7A409}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{035ADBA3-EBEE-4988-A5BA-7373D3B7A409}.Release|Any CPU.Build.0 = Release|Any CPU
+		{035ADBA3-EBEE-4988-A5BA-7373D3B7A409}.ReleaseAzure|Any CPU.ActiveCfg = ReleaseAzure|Any CPU
+		{035ADBA3-EBEE-4988-A5BA-7373D3B7A409}.ReleaseAzure|Any CPU.Build.0 = ReleaseAzure|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,5 +114,6 @@ Global
 		{8F126E9B-383D-4CAF-9244-02374521B54E} = {D7D7C789-D7C1-40BF-9239-C1F9E0EFFD4E}
 		{54B29A2F-A2F0-41D1-96A0-5B8FDC31C793} = {812D6200-CD11-4DD8-84FA-66EC4374FB8C}
 		{9C5CF151-CB43-4FA2-A3BC-6D55249C4781} = {54B29A2F-A2F0-41D1-96A0-5B8FDC31C793}
+		{035ADBA3-EBEE-4988-A5BA-7373D3B7A409} = {D7D7C789-D7C1-40BF-9239-C1F9E0EFFD4E}
 	EndGlobalSection
 EndGlobal

@@ -16,6 +16,7 @@ using Service.Implement.Search;
 using Service.Interface.Authentication;
 using Service.Interface.Business;
 using Service.Interface.Search;
+using Membership;
 
 namespace API.App_Start
 {
@@ -63,8 +64,11 @@ namespace API.App_Start
             builder.RegisterType<WorkContext>().As<IWorkContext>().InstancePerLifetimeScope();
 
             //user store
+            builder.RegisterType<EfUserStore>().As<IUserStore<User>>().InstancePerDependency();
+            builder.RegisterType<EfUserManager>().As<UserManager<User>>().InstancePerDependency();
             var dataProtectionProvider = new MachineKeyProtectionProvider();
             builder.Register<IDataProtectionProvider>(cc => dataProtectionProvider).InstancePerDependency();
+
             //business entity
             builder.RegisterType<NoisSearchEngine>()
               .As<INoisSearchEngine>().InstancePerDependency();

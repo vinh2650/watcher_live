@@ -505,6 +505,10 @@
       <Project>{f6675056-c65d-45e1-8b00-799c3d44c5ff}</Project>
       <Name>2.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Library\MemberShip\5.MemberShip.csproj">
+      <Project>{035ADBA3-EBEE-4988-A5BA-7373D3B7A409}</Project>
+      <Name>5.MemberShip</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Library\Service\4.Service.csproj">
       <Project>{c67895a0-30d9-4dff-b3e5-c03e0189dce1}</Project>
       <Name>4.Service</Name>
