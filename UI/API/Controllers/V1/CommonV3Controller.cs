@@ -36,6 +36,7 @@ namespace API.Controllers.V1
         private readonly string _attackFolderName = ConfigurationManager.AppSettings["AttachFolderName"];
         
         #endregion
+
         #region ctor
 
         /// <summary>
@@ -59,70 +60,47 @@ namespace API.Controllers.V1
         }
         #endregion
 
-        /// <summary>
-        /// get basic code
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [AllowAnonymous]
-        [Route("{id}")]
-        public IHttpActionResult Get(string id)
-        {
-            if (id == "Nois")
-            {
-                var listApplications = _applicationService.GetAllApplications();
-                var listString = listApplications.Select(p =>
-                {
-                    var resId = p.Id;
-                    var resEncryptSecret = p.EncryptSecret;
-                    var resDecryptSecret = CommonSecurityHelper.Decrypt(resEncryptSecret, CommonSecurityHelper.KeyEncrypt);
-                    var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(resId + ":" + resDecryptSecret);
-                    var res = Convert.ToBase64String(plainTextBytes);
-                    return new
-                    {
-                        ClientId = p.Id,
-                        ClientSecret = resDecryptSecret,
-                        BasicCode = res
-                    };
+        ///// <summary>
+        ///// get basic code
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns></returns>
+        //[AllowAnonymous]
+        //[Route("{id}")]
+        //public IHttpActionResult Get(string id)
+        //{
+        //    if (id == "Nois")
+        //    {
+        //        var listApplications = _applicationService.GetAllApplications();
+        //        var listString = listApplications.Select(p =>
+        //        {
+        //            var resId = p.Id;
+        //            var resEncryptSecret = p.EncryptSecret;
+        //            var resDecryptSecret = CommonSecurityHelper.Decrypt(resEncryptSecret, CommonSecurityHelper.KeyEncrypt);
+        //            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(resId + ":" + resDecryptSecret);
+        //            var res = Convert.ToBase64String(plainTextBytes);
+        //            return new
+        //            {
+        //                ClientId = p.Id,
+        //                ClientSecret = resDecryptSecret,
+        //                BasicCode = res
+        //            };
 
-                }).ToList();
-                return Json(new
-                {
-                    Apps = listString
-                });
-            }
-            else
-            {
-                return Json(new
-                {
+        //        }).ToList();
+        //        return Json(new
+        //        {
+        //            Apps = listString
+        //        });
+        //    }
+        //    else
+        //    {
+        //        return Json(new
+        //        {
 
-                });
-            }
+        //        });
+        //    }
 
-        }
-
-        /// <summary>
-        /// get list user
-        /// </summary>
-        /// <returns></returns>
-        [Route("GetUsersForPost")]
-        [HttpGet]
-        public IHttpActionResult GetUsersForNotification(string keyword = null)
-        {
-            var userId = _workContext.CurrentUser == null ? "" : _workContext.CurrentUser.Id;
-
-            var users = _userService.GetUsersForNotification(userId, keyword);
-
-            var resultData = users.Select(u => new UserInfoForNotificationViewModel()
-            {
-                Id = u.Id,
-                Username = u.UserName,
-                Email = u.Email,
-                FirstName = u.FirstName,
-                LastName = u.LastName
-            }).ToList();
-            return Success(resultData);
-        }
+        //}
 
         /// <summary>
         /// Delete existing index and create anew with mappings
