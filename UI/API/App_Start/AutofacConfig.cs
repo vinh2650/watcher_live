@@ -65,8 +65,8 @@ namespace API.App_Start
             builder.Register<IDataProtectionProvider>(cc => dataProtectionProvider).InstancePerDependency();
 
             //business entity
-            builder.RegisterType<NoisSearchEngine>()
-              .As<INoisSearchEngine>().InstancePerDependency();
+            builder.RegisterType<SearchEngine>()
+              .As<ISearchEngine>().InstancePerDependency();
             builder.RegisterType<RelationshipService>()
               .As<IRelationshipService>().InstancePerDependency();
             builder.RegisterType<RelationshipRequestService>()
@@ -75,8 +75,8 @@ namespace API.App_Start
             #region ES
             //CSV
             //Elasticsearch
-            builder.RegisterType<NoisSearchEngine>()
-                .As<INoisSearchEngine>().InstancePerDependency();
+            builder.RegisterType<SearchEngine>()
+                .As<ISearchEngine>().InstancePerDependency();
 
             #endregion
 

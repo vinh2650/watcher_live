@@ -25,7 +25,7 @@ namespace API.Controllers.V1
         #region fields
         private readonly IAmsApplicationService _applicationService;
         private readonly IUserService _userService;
-        private readonly INoisSearchEngine _noisSearchEngine;
+        private readonly ISearchEngine _noisSearchEngine;
         #endregion
 
         #region Const
@@ -49,7 +49,7 @@ namespace API.Controllers.V1
         /// <param name="mediaService"></param>
         public CommonV3Controller(IAmsApplicationService applicationService,
             IUserService userService,
-            INoisSearchEngine noisSearchEngine)
+            ISearchEngine noisSearchEngine)
         {
             _applicationService = applicationService;
             _userService = userService;
