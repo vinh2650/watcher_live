@@ -3,7 +3,6 @@ using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
-using API.Infrastructure;
 using API.Models;
 using Common.Helpers;
 using Service.Interface.Authentication;
@@ -25,7 +24,6 @@ namespace API.Controllers.V1
 
         #region fields
         private readonly IAmsApplicationService _applicationService;
-        private readonly IWorkContext _workContext;
         private readonly IUserService _userService;
         private readonly INoisSearchEngine _noisSearchEngine;
         #endregion
@@ -50,11 +48,10 @@ namespace API.Controllers.V1
         /// <param name="noisSearchEngine"></param>
         /// <param name="mediaService"></param>
         public CommonV3Controller(IAmsApplicationService applicationService,
-            IWorkContext workContext, IUserService userService,
+            IUserService userService,
             INoisSearchEngine noisSearchEngine)
         {
             _applicationService = applicationService;
-            _workContext = workContext;
             _userService = userService;
             _noisSearchEngine = noisSearchEngine;
         }

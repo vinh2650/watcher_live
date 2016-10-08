@@ -183,6 +183,7 @@ D:\Watcher\watcher\UI\API\bin\zh-Hant\System.Spatial.resources.dll
 D:\Watcher\watcher\UI\API\obj\Debug\API.csprojResolveAssemblyReference.cache
 D:\Watcher\watcher\UI\API\obj\Debug\API.dll
 D:\Watcher\watcher\UI\API\obj\Debug\API.pdb
+D:\Watcher\watcher_live\UI\API\obj\Debug\API.csprojResolveAssemblyReference.cache
 D:\Watcher\watcher_live\UI\API\bin\SwaggerXml\AMS.XML
 D:\Watcher\watcher_live\UI\API\bin\API.dll.config
 D:\Watcher\watcher_live\UI\API\bin\API.dll
@@ -367,6 +368,5 @@ D:\Watcher\watcher_live\UI\API\bin\ko\System.Spatial.resources.dll
 D:\Watcher\watcher_live\UI\API\bin\ru\System.Spatial.resources.dll
 D:\Watcher\watcher_live\UI\API\bin\zh-Hans\System.Spatial.resources.dll
 D:\Watcher\watcher_live\UI\API\bin\zh-Hant\System.Spatial.resources.dll
-D:\Watcher\watcher_live\UI\API\obj\Debug\API.csprojResolveAssemblyReference.cache
 D:\Watcher\watcher_live\UI\API\obj\Debug\API.dll
 D:\Watcher\watcher_live\UI\API\obj\Debug\API.pdb

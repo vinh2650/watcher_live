@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using API.Infrastructure;
 using API.Providers;
 using Autofac;
 using Autofac.Integration.WebApi;
@@ -17,7 +16,6 @@ using Service.Interface.Authentication;
 using Service.Interface.Business;
 using Service.Interface.Search;
 using Membership;
-
 namespace API.App_Start
 {
     /// <summary>
@@ -59,9 +57,6 @@ namespace API.App_Start
                .As<IRoleService>().InstancePerDependency();
             builder.RegisterType<UserService>()
                 .As<IUserService>().InstancePerDependency();
-
-            //work context
-            builder.RegisterType<WorkContext>().As<IWorkContext>().InstancePerLifetimeScope();
 
             //user store
             builder.RegisterType<EfUserStore>().As<IUserStore<User>>().InstancePerDependency();

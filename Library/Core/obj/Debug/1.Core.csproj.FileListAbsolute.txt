@@ -49,5 +49,6 @@ D:\Watcher\watcher_live\Library\Core\bin\Debug\Microsoft.Owin.Security.xml
 D:\Watcher\watcher_live\Library\Core\bin\Debug\Microsoft.Owin.Security.Cookies.xml
 D:\Watcher\watcher_live\Library\Core\bin\Debug\Microsoft.Owin.Security.OAuth.xml
 D:\Watcher\watcher_live\Library\Core\bin\Debug\Newtonsoft.Json.xml
+D:\Watcher\watcher_live\Library\Core\obj\Debug\1.Core.csprojResolveAssemblyReference.cache
 D:\Watcher\watcher_live\Library\Core\obj\Debug\Core.dll
 D:\Watcher\watcher_live\Library\Core\obj\Debug\Core.pdb

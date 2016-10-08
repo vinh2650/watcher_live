@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using API.Helpers;
-using API.Infrastructure;
 using API.Models;
 using API.Models.Business;
 using Common.Helpers;
@@ -34,7 +33,6 @@ namespace API.Controllers.V1
         private readonly UserManager<User> _userManager;
         private readonly IAmsApplicationService _amsApplicationService;
         private readonly IUserService _userService;
-        private readonly IWorkContext _workContext;
         private readonly IRoleService _roleService;
         #endregion
 
@@ -46,20 +44,17 @@ namespace API.Controllers.V1
         /// <param name="userManager"></param>
         /// <param name="amsApplicationService"></param>
         /// <param name="userService"></param>
-        /// <param name="workContext"></param>
         /// <param name="roleService"></param>
         public AccountV3Controller(
-            UserManager<User> userManager, 
-            IAmsApplicationService amsApplicationService, 
+            UserManager<User> userManager,
+            IAmsApplicationService amsApplicationService,
             IUserService userService,
-            IWorkContext workContext, 
             IRoleService roleService
             )
         {
             _userManager = userManager;
             _amsApplicationService = amsApplicationService;
             _userService = userService;
-            _workContext = workContext;
             _roleService = roleService;
         }
         #endregion
@@ -155,7 +150,7 @@ namespace API.Controllers.V1
             return Ok();
         }
 
-        
+
 
         /// <summary>
         /// get user info
@@ -172,7 +167,9 @@ namespace API.Controllers.V1
             try
             {
                 //check current user is null
-                var currentUser = _workContext.CurrentUser;
+                var currentUserId = User.GetValueOfClaim(ClaimName.UseridKey);
+                var currentUser = _userService.GetUserById(currentUserId);
+
                 if (currentUser == null)
                 {
                     return Error("Unauthorized", HttpStatusCode.Unauthorized);
@@ -180,7 +177,7 @@ namespace API.Controllers.V1
 
                 //get roles of user
                 var roles = _roleService.GetRolesOfUser(currentUser.Id);
-              
+
                 //prepair result
                 var resultData = new UserInfo
                 {
@@ -393,7 +390,8 @@ namespace API.Controllers.V1
                 return Error(errorMessages);
             }
 
-            var currentUser = _workContext.CurrentUser;
+            var currentUserId = User.GetValueOfClaim(ClaimName.UseridKey);
+            var currentUser = _userService.GetUserById(currentUserId);
 
             //validate old password
             var verifyCode = CommonSecurityHelper.CreatePasswordHash(model.OldPassword, currentUser.SaltDigitCodeHash);
@@ -467,8 +465,10 @@ namespace API.Controllers.V1
             {
                 return Error(errorMessages);
             }
-        
-            var currentUser = _workContext.CurrentUser;
+
+            var currentUserId = User.GetValueOfClaim(ClaimName.UseridKey);
+            var currentUser = _userService.GetUserById(currentUserId);
+
             if (currentUser == null)
             {
                 return Error("Unauthorized", System.Net.HttpStatusCode.Unauthorized);
@@ -510,7 +510,7 @@ namespace API.Controllers.V1
             //var userId = !string.IsNullOrEmpty(request.Form[0])
             //    ? request.Form["userId"]
             //    : _workContext.CurrentUser.Id;
-            var userId = _workContext.CurrentUser.Id;
+            var userId = User.GetValueOfClaim(ClaimName.UseridKey);
             try
             {
                 // This endpoint only supports multipart form data
