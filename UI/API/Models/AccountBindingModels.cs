@@ -116,15 +116,6 @@ namespace API.Models
     public class UserInfo
     {
         /// <summary>
-        /// constructor user info
-        /// </summary>
-        public UserInfo()
-        {
-            Permissions = new List<Permission>();
-            Library = new LibraryModel();
-        }
-
-        /// <summary>
         /// id of user
         /// </summary>
         public string Id { get; set; }
@@ -155,23 +146,9 @@ namespace API.Models
         public string PhoneNumber { get; set; }
 
         /// <summary>
-        /// library of user
+        /// Count of user relationship
         /// </summary>
-        public LibraryModel Library { get; set; }
-
-        /// <summary>
-        /// permissions of user
-        /// </summary>
-        public List<Permission> Permissions { get; set; }
-
-        //public OrganizationModel OwnerOrganization { get; set; }
-
-        //public bool IsConfigChargify { get; set; }
-
-        /// <summary>
-        /// OndemandStatus
-        /// </summary>
-        public CheckingOndemandStatus OndemandStatus { get; set; }
+        public int RelationCount { get; set; }
 
         /// <summary>
         /// DefaultLocation of BTS

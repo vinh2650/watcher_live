@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Http;
-using API.Infrastructure;
+using API.Helpers;
 using API.Models.Business;
 using Common.Helpers;
 using Core.Domain.Authentication;
@@ -17,7 +17,6 @@ namespace API.Controllers.V1
     public class UserController : BaseApiController
     {
         private readonly IUserService _userService;
-        private readonly IWorkContext _workContext;
         private readonly UserManager<User> _userManager;
         private readonly IRoleService _roleService;
 
@@ -28,16 +27,13 @@ namespace API.Controllers.V1
         /// <param name="userService"></param>
         /// <param name="roleService"></param>
         /// <param name="userManager"></param>
-        /// <param name="workContext"></param>
         public UserController(IUserService userService,
             IRoleService roleService,
-            UserManager<User> userManager,
-            IWorkContext workContext)
+            UserManager<User> userManager)
         {
             _userService = userService;
             _roleService = roleService;
             _userManager = userManager;
-            _workContext = workContext;
         }
 
 
@@ -88,7 +84,7 @@ namespace API.Controllers.V1
                 SaltDigitCodeHash = saltKey,
                 Active = true,
                 IsEmailConfirmed = true,
-                ParentId = _workContext.CurrentUser?.Id
+                ParentId = User.GetValueOfClaim(ClaimName.UseridKey)
             };
 
             //create user

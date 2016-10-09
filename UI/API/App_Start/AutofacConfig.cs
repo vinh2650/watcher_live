@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using API.Infrastructure;
 using API.Providers;
 using Autofac;
 using Autofac.Integration.WebApi;
@@ -17,7 +16,6 @@ using Service.Interface.Authentication;
 using Service.Interface.Business;
 using Service.Interface.Search;
 using Membership;
-
 namespace API.App_Start
 {
     /// <summary>
@@ -60,9 +58,6 @@ namespace API.App_Start
             builder.RegisterType<UserService>()
                 .As<IUserService>().InstancePerDependency();
 
-            //work context
-            builder.RegisterType<WorkContext>().As<IWorkContext>().InstancePerLifetimeScope();
-
             //user store
             builder.RegisterType<EfUserStore>().As<IUserStore<User>>().InstancePerDependency();
             builder.RegisterType<EfUserManager>().As<UserManager<User>>().InstancePerDependency();
@@ -70,8 +65,8 @@ namespace API.App_Start
             builder.Register<IDataProtectionProvider>(cc => dataProtectionProvider).InstancePerDependency();
 
             //business entity
-            builder.RegisterType<NoisSearchEngine>()
-              .As<INoisSearchEngine>().InstancePerDependency();
+            builder.RegisterType<SearchEngine>()
+              .As<ISearchEngine>().InstancePerDependency();
             builder.RegisterType<RelationshipService>()
               .As<IRelationshipService>().InstancePerDependency();
             builder.RegisterType<RelationshipRequestService>()
@@ -80,8 +75,8 @@ namespace API.App_Start
             #region ES
             //CSV
             //Elasticsearch
-            builder.RegisterType<NoisSearchEngine>()
-                .As<INoisSearchEngine>().InstancePerDependency();
+            builder.RegisterType<SearchEngine>()
+                .As<ISearchEngine>().InstancePerDependency();
 
             #endregion
 

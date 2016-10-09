@@ -13,7 +13,7 @@ using Service.Interface.Search;
 
 namespace Service.Implement.Search
 {
-    public class NoisSearchEngine : INoisSearchEngine
+    public class SearchEngine : ISearchEngine
     {
         private RestClient _client = new RestClient(ConfigurationManager.AppSettings["ElasticSearchUrl"]);
         private readonly string _indexName = ConfigurationManager.AppSettings["EsIndexName"];

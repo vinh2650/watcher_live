@@ -7,7 +7,7 @@ namespace Service.Interface.Search
     /// <summary>
     /// Search engine for tribo
     /// </summary>
-    public interface INoisSearchEngine
+    public interface ISearchEngine
     {
         /// <summary>
         /// create index 

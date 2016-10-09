@@ -719,15 +719,15 @@
             Account Controller
             </summary>
         </member>
-        <member name="M:API.Controllers.V1.AccountV3Controller.#ctor(Microsoft.AspNet.Identity.UserManager{Core.Domain.Authentication.User},Service.Interface.Authentication.IAmsApplicationService,Service.Interface.Authentication.IUserService,API.Infrastructure.IWorkContext,Service.Interface.Authentication.IRoleService)">
+        <member name="M:API.Controllers.V1.AccountV3Controller.#ctor(Microsoft.AspNet.Identity.UserManager{Core.Domain.Authentication.User},Service.Interface.Authentication.IAmsApplicationService,Service.Interface.Authentication.IUserService,Service.Interface.Authentication.IRoleService,Service.Interface.Business.IRelationshipService)">
             <summary>
             Account Controller
             </summary>
             <param name="userManager"></param>
             <param name="amsApplicationService"></param>
             <param name="userService"></param>
-            <param name="workContext"></param>
             <param name="roleService"></param>
+            <param name="relationshipService"></param>
         </member>
         <member name="T:API.Controllers.V1.AccountV3Controller.RegisterResponse">
             <summary>
@@ -848,7 +848,7 @@
             common api
             </summary>
         </member>
-        <member name="M:API.Controllers.V1.CommonV3Controller.#ctor(Service.Interface.Authentication.IAmsApplicationService,API.Infrastructure.IWorkContext,Service.Interface.Authentication.IUserService,Service.Interface.Search.INoisSearchEngine)">
+        <member name="M:API.Controllers.V1.CommonV3Controller.#ctor(Service.Interface.Authentication.IAmsApplicationService,Service.Interface.Authentication.IUserService,Service.Interface.Search.ISearchEngine)">
             <summary>
             constructor common
             </summary>
@@ -859,19 +859,6 @@
             <param name="alarmRecordService"></param>
             <param name="noisSearchEngine"></param>
             <param name="mediaService"></param>
-        </member>
-        <member name="M:API.Controllers.V1.CommonV3Controller.Get(System.String)">
-            <summary>
-            get basic code
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:API.Controllers.V1.CommonV3Controller.GetUsersForNotification(System.String)">
-            <summary>
-            get list user
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:API.Controllers.V1.CommonV3Controller.IndexData">
             <summary>
@@ -950,14 +937,13 @@
             User controller
             </summary>
         </member>
-        <member name="M:API.Controllers.V1.UserController.#ctor(Service.Interface.Authentication.IUserService,Service.Interface.Authentication.IRoleService,Microsoft.AspNet.Identity.UserManager{Core.Domain.Authentication.User},API.Infrastructure.IWorkContext)">
+        <member name="M:API.Controllers.V1.UserController.#ctor(Service.Interface.Authentication.IUserService,Service.Interface.Authentication.IRoleService,Microsoft.AspNet.Identity.UserManager{Core.Domain.Authentication.User})">
             <summary>
             Ctor
             </summary>
             <param name="userService"></param>
             <param name="roleService"></param>
             <param name="userManager"></param>
-            <param name="workContext"></param>
         </member>
         <member name="M:API.Controllers.V1.UserController.Regsiter(API.Models.Business.UserCreate)">
             <summary>
@@ -1002,65 +988,6 @@
             <param name="claimName"></param>
             <returns></returns>
         </member>
-        <member name="P:API.Infrastructure.IWorkContext.CurrentUser">
-            <summary>
-            Current user, use for getting quickly in code
-            </summary>
-        </member>
-        <member name="P:API.Infrastructure.IWorkContext.CurrentUsername">
-            <summary>
-            current user name
-            </summary>
-        </member>
-        <member name="P:API.Infrastructure.IWorkContext.CurrentRoles">
-            <summary>
-            the roles of current user.
-            </summary>
-        </member>
-        <member name="T:API.Infrastructure.ValidateRolePermissionAttribute">
-            <summary>
-            Use for checking user has role in claim or not
-            </summary>
-        </member>
-        <member name="P:API.Infrastructure.ValidateRolePermissionAttribute.RoleClaim">
-            <summary>
-            RoleClaim
-            </summary>
-        </member>
-        <member name="M:API.Infrastructure.ValidateRolePermissionAttribute.OnActionExecuting(System.Web.Http.Controllers.HttpActionContext)">
-            <summary>
-            OnActionExecuting
-            </summary>
-            <param name="actionContext"></param>
-        </member>
-        <member name="T:API.Infrastructure.WorkContext">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:API.Infrastructure.WorkContext.#ctor(Microsoft.Owin.IOwinContext,Service.Interface.Authentication.IUserService,Service.Interface.Authentication.IRoleService)">
-            <summary>
-            
-            </summary>
-            <param name="owinContext"></param>
-            <param name="userService"></param>
-            <param name="roleService"></param>
-        </member>
-        <member name="P:API.Infrastructure.WorkContext.CurrentUser">
-            <summary>
-            Current user, use for getting quickly in code
-            </summary>
-        </member>
-        <member name="P:API.Infrastructure.WorkContext.CurrentUsername">
-            <summary>
-            current user name
-            </summary>
-        </member>
-        <member name="P:API.Infrastructure.WorkContext.CurrentRoles">
-            <summary>
-            the roles of current user.
-            </summary>
-        </member>
         <member name="P:API.Models.RegisterBindingModel.Email">
             <summary>
             Email
@@ -1096,11 +1023,6 @@
             user info result
             </summary>
         </member>
-        <member name="M:API.Models.UserInfo.#ctor">
-            <summary>
-            constructor user info
-            </summary>
-        </member>
         <member name="P:API.Models.UserInfo.Id">
             <summary>
             id of user
@@ -1131,19 +1053,9 @@
             phonenumber of user
             </summary>
         </member>
-        <member name="P:API.Models.UserInfo.Library">
+        <member name="P:API.Models.UserInfo.RelationCount">
             <summary>
-            library of user
-            </summary>
-        </member>
-        <member name="P:API.Models.UserInfo.Permissions">
-            <summary>
-            permissions of user
-            </summary>
-        </member>
-        <member name="P:API.Models.UserInfo.OndemandStatus">
-            <summary>
-            OndemandStatus
+            Count of user relationship
             </summary>
         </member>
         <member name="P:API.Models.UserInfo.DefaultLocation">
@@ -1506,421 +1418,6 @@
             organization id of customer
             </summary>
         </member>
-        <member name="T:API.Models.Business.GetMessageResult">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:API.Models.Business.GetMessageResult.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetMessageResult.Records">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetMessageResult.Messages">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetMessageResult.OtherMessagesData">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:API.Models.Business.OtherMessagesData">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.OtherMessagesData.Id">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.OtherMessagesData.Total">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:API.Models.Business.GetNotificationResults">
-            <summary>
-            ViewModel GetPostResults
-            </summary>
-        </member>
-        <member name="M:API.Models.Business.GetNotificationResults.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetNotificationResults.Id">
-            <summary>
-            Id Post result
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetNotificationResults.Author">
-             <summary>
-            name author
-             </summary>
-        </member>
-        <member name="P:API.Models.Business.GetNotificationResults.Subject">
-            <summary>
-             subject
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetNotificationResults.To">
-            <summary>
-            list assigned
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetNotificationResults.Message">
-            <summary>
-            message
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetNotificationResults.CreatedDate">
-            <summary>
-            create time
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetNotificationResults.Total">
-            <summary>
-            total
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetNotificationResults.AttachmentList">
-            <summary>
-            attachmentList
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetNotificationResults.UserId">
-            <summary>
-            user
-            </summary>
-        </member>
-        <member name="T:API.Models.Business.AssignedModel">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.AssignedModel.UserId">
-            <summary>
-            userId
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.AssignedModel.Name">
-            <summary>
-            name
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.AssignedModel.Email">
-            <summary>
-            email
-            </summary>
-        </member>
-        <member name="T:API.Models.Business.GetReplyResult">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:API.Models.Business.GetReplyResult.#ctor">
-            <summary>
-            init contructor
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetReplyResult.Records">
-            <summary>
-            record
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetReplyResult.Replies">
-            <summary>
-            list replie
-            </summary>
-        </member>
-        <member name="T:API.Models.Business.GetCommentResult">
-            <summary>
-            class GetCommentResult
-            </summary>
-        </member>
-        <member name="M:API.Models.Business.GetCommentResult.#ctor">
-            <summary>
-            contructor
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetCommentResult.Id">
-            <summary>
-            Id
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetCommentResult.Author">
-            <summary>
-            Author
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetCommentResult.Message">
-            <summary>
-            Message
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetCommentResult.CreatedDate">
-            <summary>
-            CreatedDate
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetCommentResult.AttachmentList">
-            <summary>
-            AttachmentList
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetCommentResult.UserId">
-            <summary>
-            id of user
-            </summary>
-        </member>
-        <member name="T:API.Models.Business.NotificationModel">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.NotificationModel.Id">
-            <summary>
-            Id
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.NotificationModel.Subject">
-            <summary>
-            Subject
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.NotificationModel.Content">
-            <summary>
-            Content
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.NotificationModel.CreatedDate">
-            <summary>
-            CreatedDate
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.NotificationModel.User">
-            <summary>
-            User
-            </summary>
-        </member>
-        <member name="T:API.Models.Business.UserNotificationModel">
-            <summary>
-            class UserPostModel
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.UserNotificationModel.Id">
-            <summary>
-            Id
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.UserNotificationModel.FirstName">
-            <summary>
-            FirstName
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.UserNotificationModel.LastName">
-            <summary>
-            LastName
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.UserNotificationModel.Avatar">
-            <summary>
-            Avatar
-            </summary>
-        </member>
-        <member name="T:API.Models.Business.WriteNotificationModel">
-            <summary>
-            Write Post view model
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.WriteNotificationModel.ObjectName">
-            <summary>
-            Object name, bts name or cell name
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.WriteNotificationModel.Subject">
-            <summary>
-            Subject
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.WriteNotificationModel.Content">
-            <summary>
-            Content
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.WriteNotificationModel.AttachmentList">
-            <summary>
-            AttachmentList
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.WriteNotificationModel.AssignedList">
-            <summary>
-            AssignedList
-            </summary>
-        </member>
-        <member name="M:API.Models.Business.WriteNotificationModel.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:API.Models.Business.WriteNotificationFromEmailModel">
-            <summary>
-            Write post from email view model
-            </summary>
-        </member>
-        <member name="M:API.Models.Business.WriteNotificationFromEmailModel.#ctor">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.WriteNotificationFromEmailModel.Subject">
-            <summary>
-            Subject
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.WriteNotificationFromEmailModel.Content">
-            <summary>
-            Content
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.WriteNotificationFromEmailModel.AttachmentList">
-            <summary>
-            AttachmentList
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.WriteNotificationFromEmailModel.Email">
-            <summary>
-            Email
-            </summary>
-        </member>
-        <member name="T:API.Models.Business.WriteCommentModel">
-            <summary>
-            class WriteCommentModel
-            </summary>
-        </member>
-        <member name="M:API.Models.Business.WriteCommentModel.#ctor">
-            <summary>
-            contructor WriteCommentModel()
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.WriteCommentModel.NotificationId">
-            <summary>
-            PostId
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.WriteCommentModel.Content">
-            <summary>
-            Content
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.WriteCommentModel.Subject">
-            <summary>
-            Subject
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.WriteCommentModel.AttachmentList">
-            <summary>
-            AttachmentList
-            </summary>
-        </member>
-        <member name="T:API.Models.Business.WriteCommentFromEmailModel">
-            <summary>
-            class WriteCommentFromEmailModel
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.WriteCommentFromEmailModel.Email">
-            <summary>
-            Email
-            </summary>
-        </member>
-        <member name="T:API.Models.Business.GetMessageOfCell">
-            <summary>
-            get message of cell
-            </summary>
-        </member>
-        <member name="M:API.Models.Business.GetMessageOfCell.#ctor">
-            <summary>
-            contructor
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetMessageOfCell.Total">
-            <summary>
-            total message
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetMessageOfCell.CellName">
-            <summary>
-            cell Name
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetMessageOfCell.Messages">
-            <summary>
-            messages
-            </summary>
-        </member>
-        <member name="T:API.Models.Business.MessageForGetMessageOfCell">
-            <summary>
-            message for get message of cell
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.MessageForGetMessageOfCell.Id">
-            <summary>
-            Id
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.MessageForGetMessageOfCell.OwnerId">
-            <summary>
-            OwnerId 
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.MessageForGetMessageOfCell.Content">
-            <summary>
-            Content
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.MessageForGetMessageOfCell.Subject">
-            <summary>
-            subject
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.MessageForGetMessageOfCell.AttachmentList">
-            <summary>
-            AttachmentList
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.MessageForGetMessageOfCell.UpdatedDateUtc">
-            <summary>
-            UpdatedDateUtc
-            </summary>
-        </member>
-        <member name="T:API.Models.Business.GetNotificationByCellnameRequest">
-            <summary>
-            Get Notification By Cell Name Request Model
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetNotificationByCellnameRequest.CellName">
-            <summary>
-            CellName
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetNotificationByCellnameRequest.Skip">
-            <summary>
-            Skip Post
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.GetNotificationByCellnameRequest.Take">
-            <summary>
-            Take Post
-            </summary>
-        </member>
         <member name="T:API.Models.Business.RelationshipModel">
             <summary>
             Model of Reletionship
@@ -1936,21 +1433,6 @@
             Type of the relationship
             0 - Family
             1 - Friend
-            </summary>
-        </member>
-        <member name="T:API.Models.Business.RoleGetResult">
-            <summary>
-            get role result
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.RoleGetResult.Id">
-            <summary>
-            id of role
-            </summary>
-        </member>
-        <member name="P:API.Models.Business.RoleGetResult.Name">
-            <summary>
-            system name of role
             </summary>
         </member>
         <member name="T:API.Models.Business.UserCreate">
@@ -2116,16 +1598,6 @@
         <member name="P:API.Models.Business.UserGetAllResult.Role">
             <summary>
             role of user
-            </summary>
-        </member>
-        <member name="P:API.Models.CellKpiModel.CreateDateTimeUtc">
-            <summary>
-            InDateUtc
-            </summary>
-        </member>
-        <member name="P:API.Models.CellKpiModel.CellId">
-            <summary>
-            Cell Id, 
             </summary>
         </member>
         <member name="T:API.Models.JsonResult">
@@ -2339,16 +1811,6 @@
         <member name="M:API.Validations.Business.UserUpdateValidator.#ctor">
             <summary>
             ctor
-            </summary>
-        </member>
-        <member name="T:API.Validations.Business.WriteNotificationValidate">
-            <summary>
-            Validate Write Notification Validate
-            </summary>
-        </member>
-        <member name="M:API.Validations.Business.WriteNotificationValidate.#ctor">
-            <summary>
-             Validate Write Notification Validate
             </summary>
         </member>
     </members>

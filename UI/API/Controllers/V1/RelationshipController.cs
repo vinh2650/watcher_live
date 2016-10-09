@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.Http;
 using API.Helpers;
-using API.Infrastructure;
 using API.Models.Business;
 using Common.Helpers;
 using Core.Domain.Authentication;
@@ -41,11 +40,6 @@ namespace API.Controllers.V1
             _relationshipRequestService = relationshipRequestService;
         }
 
-        public IHttpActionResult CreateNewRelationship(string id)
-        {
-            return Ok();
-        }
-
         /// <summary>
         /// Create new relationship, return partner Id
         /// </summary>
@@ -77,10 +71,9 @@ namespace API.Controllers.V1
 
                 return Created(model.ToUserId);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return Error(ex.Message);
             }
         }
 
@@ -124,10 +117,9 @@ namespace API.Controllers.V1
 
                 return Success("Succesfully create new relationship");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return Error(ex.Message);
             }
         }
 
@@ -151,10 +143,9 @@ namespace API.Controllers.V1
 
                 return Ok(res);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return Error(ex.Message);
             }
         }
 
@@ -178,10 +169,9 @@ namespace API.Controllers.V1
 
                 return Ok(res);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return Error(ex.Message);
             }
         }
 
@@ -205,10 +195,9 @@ namespace API.Controllers.V1
 
                 return Ok(res);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return Error(ex.Message);
             }
         }
 
@@ -235,10 +224,9 @@ namespace API.Controllers.V1
 
                 return Deleted();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return Error(ex.Message);
             }
         }
 
@@ -268,10 +256,9 @@ namespace API.Controllers.V1
 
                 return Deleted();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return Error(ex.Message);
             }
         }
 
@@ -295,10 +282,9 @@ namespace API.Controllers.V1
 
                 return Ok(res);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return Error(ex.Message);
             }
         }
 
@@ -321,10 +307,9 @@ namespace API.Controllers.V1
 
                 return Ok(res);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return Error(ex.Message);
             }
         }
     }
