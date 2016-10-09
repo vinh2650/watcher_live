@@ -19,6 +19,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Service.Interface.Authentication;
+using Service.Interface.Business;
 using Swashbuckle.Swagger.Annotations;
 
 namespace API.Controllers.V1
@@ -34,6 +35,7 @@ namespace API.Controllers.V1
         private readonly IAmsApplicationService _amsApplicationService;
         private readonly IUserService _userService;
         private readonly IRoleService _roleService;
+        private readonly IRelationshipService _relationshipService;
         #endregion
 
         #region ctor
@@ -45,17 +47,19 @@ namespace API.Controllers.V1
         /// <param name="amsApplicationService"></param>
         /// <param name="userService"></param>
         /// <param name="roleService"></param>
+        /// <param name="relationshipService"></param>
         public AccountV3Controller(
             UserManager<User> userManager,
             IAmsApplicationService amsApplicationService,
             IUserService userService,
-            IRoleService roleService
-            )
+            IRoleService roleService, 
+            IRelationshipService relationshipService)
         {
             _userManager = userManager;
             _amsApplicationService = amsApplicationService;
             _userService = userService;
             _roleService = roleService;
+            _relationshipService = relationshipService;
         }
         #endregion
 
@@ -174,9 +178,8 @@ namespace API.Controllers.V1
                 {
                     return Error("Unauthorized", HttpStatusCode.Unauthorized);
                 }
-
-                //get roles of user
-                var roles = _roleService.GetRolesOfUser(currentUser.Id);
+                
+                var friendCount = _relationshipService.GetAllRelationships(currentUserId).Count;
 
                 //prepair result
                 var resultData = new UserInfo
@@ -187,12 +190,7 @@ namespace API.Controllers.V1
                     FirstName = currentUser.FirstName,
                     UserName = currentUser.UserName,
                     PhoneNumber = currentUser.Phone,
-                    Permissions = roles.Select(m => new Permission()
-                    {
-                        RoleId = m.Id,
-                        RoleName = m.Name
-                    }).ToList(),
-                    OndemandStatus = null,
+                    RelationCount = friendCount
                 };
 
 

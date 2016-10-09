@@ -719,7 +719,7 @@
             Account Controller
             </summary>
         </member>
-        <member name="M:API.Controllers.V1.AccountV3Controller.#ctor(Microsoft.AspNet.Identity.UserManager{Core.Domain.Authentication.User},Service.Interface.Authentication.IAmsApplicationService,Service.Interface.Authentication.IUserService,Service.Interface.Authentication.IRoleService)">
+        <member name="M:API.Controllers.V1.AccountV3Controller.#ctor(Microsoft.AspNet.Identity.UserManager{Core.Domain.Authentication.User},Service.Interface.Authentication.IAmsApplicationService,Service.Interface.Authentication.IUserService,Service.Interface.Authentication.IRoleService,Service.Interface.Business.IRelationshipService)">
             <summary>
             Account Controller
             </summary>
@@ -727,6 +727,7 @@
             <param name="amsApplicationService"></param>
             <param name="userService"></param>
             <param name="roleService"></param>
+            <param name="relationshipService"></param>
         </member>
         <member name="T:API.Controllers.V1.AccountV3Controller.RegisterResponse">
             <summary>
@@ -847,7 +848,7 @@
             common api
             </summary>
         </member>
-        <member name="M:API.Controllers.V1.CommonV3Controller.#ctor(Service.Interface.Authentication.IAmsApplicationService,Service.Interface.Authentication.IUserService,Service.Interface.Search.INoisSearchEngine)">
+        <member name="M:API.Controllers.V1.CommonV3Controller.#ctor(Service.Interface.Authentication.IAmsApplicationService,Service.Interface.Authentication.IUserService,Service.Interface.Search.ISearchEngine)">
             <summary>
             constructor common
             </summary>
@@ -1022,11 +1023,6 @@
             user info result
             </summary>
         </member>
-        <member name="M:API.Models.UserInfo.#ctor">
-            <summary>
-            constructor user info
-            </summary>
-        </member>
         <member name="P:API.Models.UserInfo.Id">
             <summary>
             id of user
@@ -1057,19 +1053,9 @@
             phonenumber of user
             </summary>
         </member>
-        <member name="P:API.Models.UserInfo.Library">
+        <member name="P:API.Models.UserInfo.RelationCount">
             <summary>
-            library of user
-            </summary>
-        </member>
-        <member name="P:API.Models.UserInfo.Permissions">
-            <summary>
-            permissions of user
-            </summary>
-        </member>
-        <member name="P:API.Models.UserInfo.OndemandStatus">
-            <summary>
-            OndemandStatus
+            Count of user relationship
             </summary>
         </member>
         <member name="P:API.Models.UserInfo.DefaultLocation">
