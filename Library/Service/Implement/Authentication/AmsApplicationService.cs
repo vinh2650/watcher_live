@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Common.Logs;
 using Core.Domain.Authentication;
 using Service.CachingLayer;
 using Service.Interface.Authentication;
 
 namespace Service.Implement.Authentication
 {
-    public class AmsApplicationService: BaseServiceWithLogging,IAmsApplicationService
+    public class AmsApplicationService : IAmsApplicationService
     {
         private readonly DbContext _context;
         private readonly DbSet<AmsApplication> _dbSet;
@@ -21,7 +17,7 @@ namespace Service.Implement.Authentication
 
         private const string KeyForCacheDms = "Dms.Application.Id.{0}";
 
-        public AmsApplicationService(DbContext context, ICacheManager cacheManager,INoisLoggingService noisLoggingService) : base(noisLoggingService)
+        public AmsApplicationService(DbContext context, ICacheManager cacheManager)
         {
             _context = context;
             _cacheManager = cacheManager;
@@ -54,7 +50,6 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetByIdAsync method from AmsApplicationService: " + ex.Message, ex);
                 throw ex;
             }
         }
@@ -68,9 +63,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
 
         }
@@ -80,16 +73,14 @@ namespace Service.Implement.Authentication
             try
             {
                 _cacheManager.Remove(String.Format(KeyForCacheDms, amsApplication.Id));
-                
+
                 _context.Entry(amsApplication).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
 
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -105,9 +96,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -133,10 +122,9 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetById method from AmsApplicationService: " + ex.Message, ex);
                 throw ex;
             }
-            
+
         }
         public void CreateApplication(AmsApplication amsApplication)
         {
@@ -149,9 +137,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -167,9 +153,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -185,9 +169,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -202,7 +184,6 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetAllApplications method from AmsApplicationService: " + ex.Message, ex);
                 throw ex;
             }
         }

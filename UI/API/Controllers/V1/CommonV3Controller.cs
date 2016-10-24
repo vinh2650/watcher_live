@@ -32,7 +32,7 @@ namespace API.Controllers.V1
 
         private readonly string _mediaBaseStr = ConfigurationManager.AppSettings["MediaBaseUrl"];
         private readonly string _attackFolderName = ConfigurationManager.AppSettings["AttachFolderName"];
-        
+
         #endregion
 
         #region ctor
@@ -109,14 +109,14 @@ namespace API.Controllers.V1
         {
             try
             {
-                //Create repository for holding backup ( snapshot) files
-                var repoName = "my_backup";
-                var path = ConfigurationManager.AppSettings["EsRepoPath"];
-                _noisSearchEngine.CreateRepository(path, repoName);
+                ////Create repository for holding backup ( snapshot) files
+                //var repoName = "my_backup";
+                //var path = ConfigurationManager.AppSettings["EsRepoPath"];
+                //_noisSearchEngine.CreateRepository(path, repoName);
 
-                //Take snapshot of old index
-                var snapshotName = "snapshot_" + Guid.NewGuid();
-                _noisSearchEngine.TakeSnapshot(repoName, snapshotName);
+                ////Take snapshot of old index
+                //var snapshotName = "snapshot_" + Guid.NewGuid();
+                //_noisSearchEngine.TakeSnapshot(repoName, snapshotName);
 
                 //delete old index
                 await _noisSearchEngine.DeleteIndexAsync(_indexName);
@@ -124,7 +124,7 @@ namespace API.Controllers.V1
                 var analyzerName = "lowercaseAnalyzer";
                 var analyzerstr =
                 "{\"settings\" : {" +
-                    "\"number_of_shards\": 1000," +
+                    "\"number_of_shards\": 5," +
                     "\"number_of_replicas\": 1," +
                     "\"analysis\" : " +
                         "{\"analyzer\":" + "{\"" + analyzerName + "\" : " +
@@ -139,52 +139,26 @@ namespace API.Controllers.V1
                 // mapping bts
                 var mappingDataBts =
                     "{\"" + _indexBtsType + "\":" +
-                    "{\"_routing\":" +
-                    //All insert or index need routing mapping
-                    "{\"required\":true }," +
-                    "\"properties\":" +
-                    "{\"btsid\":{\"type\":\"string\",\"index\":\"not_analyzed\"}," +
-                    "\"location\":{\"type\":\"geo_point\"}," +
-                    "\"tempid\":{\"type\":\"string\",\"index\":\"not_analyzed\"}," +
-                    "\"btsname\":{\"type\":\"string\",\"analyzer\":\"" + analyzerName + "\"}," +
-                    "\"carriername\":{\"type\":\"string\",\"analyzer\":\"" + analyzerName + "\"}," +
-                    "\"networkname\":{\"type\":\"string\",\"analyzer\":\"" + analyzerName + "\"}," +
-                    "\"operatorid\":{\"type\":\"string\",\"index\":\"not_analyzed\"}" +
+                    "{\"properties\":" +
+                    "{\"username\":{\"type\":\"string\"}," +
+                    "\"email\":{\"type\":\"string\"}," +
+                    "\"firstname\":{\"type\":\"string\"}," +
+                    "\"lastname\":{\"type\":\"string\"}," +
+                    "\"id\":{\"type\":\"string\",\"index\":\"not_analyzed\"}" +
                     "}" +
                     "}" +
                     "}";
                 await _noisSearchEngine.MappingIndexAsync(_indexName, _indexBtsType, mappingDataBts);
 
-                //mapping sites
-                var mappingDataCell =
-                    "{\"" + _indexCellType + "\":" +
-                    "{\"_routing\":" +
-                    "{\"required\":true }," +
-                    "\"properties\":" +
-                    "{\"btsname\":{\"type\":\"string\",\"analyzer\":\"" + analyzerName + "\"}," +
-                    "\"bscname\":{\"type\":\"string\",\"analyzer\":\"" + analyzerName + "\"}," +
-                    "\"antennatype\":{\"type\":\"string\",\"analyzer\":\"" + analyzerName + "\"}," +
-                    "\"cellid\":{\"type\":\"string\",\"index\":\"not_analyzed\"}," +
-                    "\"location\":{\"type\":\"geo_point\"}," +
-                    "\"cellname\":{\"type\":\"string\",\"analyzer\":\"" + analyzerName + "\"}," +
-                    "\"technology\":{\"type\":\"string\",\"analyzer\":\"" + analyzerName + "\"}," +
-                    "\"frequencytechnologyband\":{\"type\":\"string\",\"index\":\"not_analyzed\"}," +
-                    "\"tempid\":{\"type\":\"string\",\"index\":\"not_analyzed\"}," +
-                    "\"operatorid\":{\"type\":\"string\",\"index\":\"not_analyzed\"}" +
-                    "}" +
-                    "}" +
-                    "}";
-                await _noisSearchEngine.MappingIndexAsync(_indexName, _indexCellType, mappingDataCell);
+                ////Restore from snapshot, create temp index to get old data
+                //var restoreName = "restore_" + _indexName;
+                //_noisSearchEngine.RestoreFromSnapshot(repoName, snapshotName, restoreName);
 
-                //Restore from snapshot, create temp index to get old data
-                var restoreName = "restore_" + _indexName;
-                _noisSearchEngine.RestoreFromSnapshot(repoName, snapshotName, restoreName);
+                ////Reindex data from temp index to new one
+                //_noisSearchEngine.ReindexData(restoreName, _indexName);
 
-                //Reindex data from temp index to new one
-                _noisSearchEngine.ReindexData(restoreName, _indexName);
-
-                //Delete temp index
-                _noisSearchEngine.DeleteIndex(restoreName);
+                ////Delete temp index
+                //_noisSearchEngine.DeleteIndex(restoreName);
             }
             catch (Exception ex)
             {

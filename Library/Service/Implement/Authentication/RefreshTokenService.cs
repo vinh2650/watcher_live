@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using Common.Logs;
 using Core.Domain.Authentication;
 using Service.CachingLayer;
 using Service.Interface.Authentication;
@@ -13,7 +12,7 @@ namespace Service.Implement.Authentication
     /// <summary>
     /// 
     /// </summary>
-    public class RefreshTokenService: BaseServiceWithLogging, IRefreshTokenService
+    public class RefreshTokenService : IRefreshTokenService
     {
         private readonly DbContext _context;
         private readonly DbSet<RefreshToken> _dbSet;
@@ -24,7 +23,7 @@ namespace Service.Implement.Authentication
         private const string KeyForCacheRefreshByUsernameAndAppId = "AMS.RefreshToken.AppId.{0}.Username.{1}";
 
         private const string KeyForCacheRefreshByUsername = "AMS.RefreshToken.Username.{0}";
-        public RefreshTokenService(DbContext context, ICacheManager cacheManager, INoisLoggingService noisLoggingService):base(noisLoggingService)
+        public RefreshTokenService(DbContext context, ICacheManager cacheManager)
         {
             _context = context;
             _cacheManager = cacheManager;
@@ -35,7 +34,7 @@ namespace Service.Implement.Authentication
         {
             try
             {
-                _cacheManager.Remove(String.Format(KeyForCacheRefreshByUsernameAndAppId, token.Username,token.AppId));
+                _cacheManager.Remove(String.Format(KeyForCacheRefreshByUsernameAndAppId, token.Username, token.AppId));
 
 
                 _dbSet.Add(token);
@@ -44,9 +43,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -63,9 +60,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
 
         }
@@ -83,9 +78,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -100,14 +93,12 @@ namespace Service.Implement.Authentication
                     _cacheManager.Remove(String.Format(KeyForCacheRefreshById, refreshTokenId));
 
                     _context.Database.ExecuteSqlCommand("DELETE RefreshToken WHERE Id = @p0", refreshTokenId);
-                    await _context.SaveChangesAsync();    
+                    await _context.SaveChangesAsync();
                 }
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -138,9 +129,8 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetRefreshTokenByIdAsync method from RefreshTokenService: " + ex.Message, ex);
                 throw ex;
-            }   
+            }
         }
 
         public async Task<List<RefreshToken>> GetRefreshTokenByUsernameAndAppIdAsync(string username, string appId)
@@ -171,9 +161,8 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetRefreshTokenByUsernameAndAppIdAsync method from RefreshTokenService: " + ex.Message, ex);
                 throw ex;
-            }          
+            }
         }
 
         public void CreateRefreshToken(RefreshToken token)
@@ -187,9 +176,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -206,9 +193,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
 
         }
@@ -225,9 +210,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -246,9 +229,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -275,9 +256,8 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetRefreshTokenById method from RefreshTokenService: " + ex.Message, ex);
                 throw ex;
-            }            
+            }
         }
 
         public List<RefreshToken> GetRefreshTokenByUsernameAndAppId(string username, string appId)
@@ -304,10 +284,9 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetRefreshTokenByUsernameAndAppId method from RefreshTokenService: " + ex.Message, ex);
                 throw ex;
             }
-           
+
         }
 
         public void ChangeAllRefreshToken(string username, string appId)
@@ -326,10 +305,9 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call ChangeAllRefreshToken method from RefreshTokenService: " + ex.Message, ex);
                 throw ex;
             }
-            
+
         }
 
         public async Task ChangeAllRefreshTokenAsync(string username, string appId)
@@ -348,10 +326,9 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call ChangeAllRefreshTokenAsync method from RefreshTokenService: " + ex.Message, ex);
                 throw ex;
             }
-           
+
         }
 
         public List<RefreshToken> GetRefreshTokenByUsername(string username)
@@ -395,7 +372,6 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call ChangeAllRefreshToken method from RefreshTokenService: " + ex.Message, ex);
                 throw ex;
             }
 
@@ -417,7 +393,6 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call ChangeAllRefreshToken method from RefreshTokenService: " + ex.Message, ex);
                 throw ex;
             }
 

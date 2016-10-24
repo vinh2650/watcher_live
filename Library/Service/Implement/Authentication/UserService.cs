@@ -4,32 +4,26 @@ using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Common.Logs;
 using Core.Domain.Authentication;
 using Service.CachingLayer;
 using Service.Interface.Authentication;
 
 namespace Service.Implement.Authentication
 {
-    public class UserService:BaseServiceWithLogging, IUserService
+    public class UserService : IUserService
     {
         private readonly DbContext _context;
         private readonly DbSet<User> _userDbSet;
         private readonly DbSet<UserClaim> _userClaimDbSet;
         private readonly ICacheManager _cacheManager;
-        
-       
 
-        private const string KeyForCachePerRoleOnClaimOfUser = "Ams.RoleOnClaim.OfUser.UserId.{0}";
-
-
-        public UserService(DbContext context, ICacheManager cacheManager,INoisLoggingService noisLoggingService):base(noisLoggingService)
+        public UserService(DbContext context, ICacheManager cacheManager)
         {
             _context = context;
             _cacheManager = cacheManager;
             _userDbSet = _context.Set<User>();
             _userClaimDbSet = _context.Set<UserClaim>();
-          }
+        }
 
         #region user
         public async Task CreateUserAsync(User user)
@@ -42,9 +36,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -58,9 +50,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -74,9 +64,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -90,9 +78,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -113,9 +99,8 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetUserByIdAsync method from UserService: " + ex.Message, ex);
                 throw ex;
-            }          
+            }
         }
 
         public async Task<User> GetUserByUsernameAsync(string username, string appId)
@@ -135,10 +120,9 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetUserByUsernameAsync method from UserService: " + ex.Message, ex);
                 throw ex;
             }
-            
+
         }
 
         public Task<ClaimsIdentity> FindByUserIdAsync(string userId)
@@ -162,7 +146,6 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call FindByUserIdAsync method from UserService: " + ex.Message, ex);
                 throw ex;
             }
         }
@@ -177,9 +160,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -193,9 +174,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -209,9 +188,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -233,7 +210,6 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetUserById method from UserService: " + ex.Message, ex);
                 throw ex;
             }
         }
@@ -254,9 +230,8 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetUserByUsername method from UserService: " + ex.Message, ex);
                 throw ex;
-            }          
+            }
         }
 
         public List<User> GetAllUser(string appId)
@@ -267,7 +242,6 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetAllUser method from UserService: " + ex.Message, ex);
                 throw ex;
             }
         }
@@ -280,7 +254,6 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetAllUserAsync method from UserService: " + ex.Message, ex);
                 throw ex;
             }
         }
@@ -306,9 +279,8 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call FindByUserId method from UserService: " + ex.Message, ex);
                 throw ex;
-            }    
+            }
         }
         #endregion
 
@@ -324,10 +296,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
-                return 0;
+                throw ex;
             }
         }
 
@@ -341,10 +310,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
-                return 0;
+                throw ex;
             }
         }
 
@@ -364,10 +330,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
-                return 0;
+                throw ex;
             }
 
         }
@@ -384,10 +347,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
-                return 0;
+                throw ex;
             }
         }
 
@@ -401,10 +361,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
-                return 0;
+                throw ex;
             }
         }
 
@@ -424,10 +381,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
-                return 0;
+                throw ex;
             }
         }
 
@@ -449,7 +403,6 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetUserByEmail method from UserService: " + ex.Message, ex);
                 throw ex;
             }
         }
@@ -469,7 +422,6 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetUserByEmailAsync method from UserService: " + ex.Message, ex);
                 throw ex;
             }
         }
@@ -489,9 +441,8 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetUserByUsername method from UserService: " + ex.Message, ex);
                 throw ex;
-            }        
+            }
         }
 
         public Task<User> GetUserByUsernameAsync(string username)
@@ -509,141 +460,36 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetUserByUsernameAsync method from UserService: " + ex.Message, ex);
                 throw ex;
-            }   
+            }
         }
 
-        public Task<string> GetRoleByClaimAsync(string userId)
+        public string GetRoleByClaimAsync(string userId)
         {
             try
             {
-                var keyCache = String.Format(KeyForCachePerRoleOnClaimOfUser, userId);
-                var res = _cacheManager.Get(keyCache, () =>
-                {
-                    string roleName = _context.Database.SqlQuery<string>("SELECT [ClaimValue] FROM[dbo].[UserClaim] Where UserId = @p0 AND ClaimType = @p1", userId, ClaimTypes.Role).FirstOrDefault<string>();
-                    return roleName;
-                });
-                return Task.FromResult(res);
+                string roleName = _context.Database.SqlQuery<string>("SELECT [ClaimValue] FROM[dbo].[UserClaim] Where UserId = @p0 AND ClaimType = @p1", userId, ClaimTypes.Role).FirstOrDefault<string>();
+                return roleName;
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetRoleByClaimAsync method from UserService: " + ex.Message, ex);
                 throw ex;
-            }           
+            }
         }
 
         public string GetRoleByClaim(string userId)
         {
             try
             {
-                var keyCache = String.Format(KeyForCachePerRoleOnClaimOfUser, userId);
-                var res = _cacheManager.Get(keyCache, () =>
-                {
-                    string roleName = _context.Database.SqlQuery<string>("SELECT [ClaimValue] FROM[dbo].[UserClaim] Where UserId = @p0 AND ClaimType = @p1", userId, ClaimTypes.Role).FirstOrDefault<string>();
-                    return roleName;
-                });
-                return res;
+                string roleName = _context.Database.SqlQuery<string>("SELECT [ClaimValue] FROM[dbo].[UserClaim] Where UserId = @p0 AND ClaimType = @p1", userId, ClaimTypes.Role).FirstOrDefault<string>();
+                return roleName;
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetRoleByClaimAsync method from UserService: " + ex.Message, ex);
                 throw ex;
-            }           
+            }
         }
 
-        public async Task SetRoleToClaimAsync(string userId, string roleName)
-        {
-            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(roleName)) return;
-            var currentRole = await GetRoleByClaimAsync(userId);
-            if (!string.IsNullOrEmpty(currentRole))
-            {
-              
-                try
-                {
-                     _context.Database.ExecuteSqlCommand("UPDATE [UserClaim] SET ClaimValue = @p0 WHERE UserId = @p1 AND ClaimType= @p2", roleName, userId,ClaimTypes.Role);
-                    await _context.SaveChangesAsync();
-                }
-                catch (Exception ex)
-                {
-                    //Log the error (uncomment dex variable name and add a line here to write a log.
-                    //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                    LogError("There is error while updating data: " + ex.Message, ex);
-                }
-                //update old claim
-                _cacheManager.Remove(String.Format(KeyForCachePerRoleOnClaimOfUser, userId));
-                return;
-
-            }
-            var newUserClaim = new UserClaim()
-            {
-                ClaimType = ClaimTypes.Role,
-                ClaimValue = roleName,
-                UserId = userId
-            };
-            try
-            {
-                _userClaimDbSet.Add(newUserClaim);
-                await _context.SaveChangesAsync();
-              
-            }
-            catch (Exception ex)
-            {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
-            }
-
-            _cacheManager.Remove(String.Format(KeyForCachePerRoleOnClaimOfUser, userId));
-
-        }
-
-        public void SetRoleToClaim(string userId, string roleName)
-        {
-            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(roleName)) return;
-            var currentRole = GetRoleByClaim(userId);
-            if (!string.IsNullOrEmpty(currentRole))
-            {
-
-                try
-                {
-                    _context.Database.ExecuteSqlCommand("UPDATE [UserClaim] SET ClaimValue = @p0 WHERE UserId = @p1 AND ClaimType= @p2", roleName, userId, ClaimTypes.Role);
-
-                    _context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    //Log the error (uncomment dex variable name and add a line here to write a log.
-                    //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                    LogError("There is error while updating data: " + ex.Message, ex);
-                }
-                //update old claim
-                _cacheManager.Remove(String.Format(KeyForCachePerRoleOnClaimOfUser, userId));
-                return;
-
-            }
-            var newUserClaim = new UserClaim()
-            {
-                ClaimType = ClaimTypes.Role,
-                ClaimValue = roleName,
-                UserId = userId
-            };
-            try
-            {
-                _userClaimDbSet.Add(newUserClaim);
-                _context.SaveChanges();
-
-            }
-            catch (Exception ex)
-            {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
-            }
-            _cacheManager.Remove(String.Format(KeyForCachePerRoleOnClaimOfUser, userId));
-
-        }
-        
         public void UpdateUserInfo(string id, string firstName, string lastName, string phoneNumber, List<string> permissions, int organizationId)
         {
             if (string.IsNullOrEmpty(id))
@@ -675,7 +521,6 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call UpdateUserInfo method from UserService: " + ex.Message, ex);
                 throw ex;
             }
         }
@@ -699,9 +544,8 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetAllUser method from UserService: " + ex.Message, ex);
                 throw ex;
-            }  
+            }
         }
 
         public List<User> GetUsersForNotification(string userId = null, string keyword = null)
@@ -724,9 +568,8 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetUsersForNotification method from UserService: " + ex.Message, ex);
                 throw ex;
-            }           
+            }
         }
 
         public List<User> GetUsersByEmails(List<string> idsList)
@@ -745,10 +588,10 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetUsersByEmails method from UserService: " + ex.Message, ex);
                 throw ex;
-            } 
-        } 
+            }
+        }
+
         #endregion
 
     }

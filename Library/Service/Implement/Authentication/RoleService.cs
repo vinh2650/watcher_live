@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Common.Logs;
 using Core.Domain.Authentication;
 using Service.CachingLayer;
 using Service.Interface.Authentication;
@@ -15,7 +12,7 @@ namespace Service.Implement.Authentication
     /// <summary>
     /// 
     /// </summary>
-    public class RoleService:BaseServiceWithLogging, IRoleService
+    public class RoleService : IRoleService
     {
         private readonly DbContext _context;
         private readonly DbSet<Role> _roleDbSet;
@@ -26,11 +23,11 @@ namespace Service.Implement.Authentication
         private const string KeyForCacheRoleByApplicationAndName = "DMS.Role.ByAppIdAndName.{0}";
 
 
-        public RoleService(DbContext context, ICacheManager cacheManager, INoisLoggingService noisLoggingService):base(noisLoggingService)
+        public RoleService(DbContext context, ICacheManager cacheManager)
         {
             _context = context;
             _roleDbSet = _context.Set<Role>();
-            _userRoleDbSet = _context.Set<UserRole>(); 
+            _userRoleDbSet = _context.Set<UserRole>();
             _cacheManager = cacheManager;
         }
 
@@ -131,9 +128,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -146,9 +141,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -157,16 +150,14 @@ namespace Service.Implement.Authentication
             try
             {
                 _cacheManager.Remove(String.Format(KeyForCacheRoleById, role.Id));
-              
+
                 _context.Database.ExecuteSqlCommand("DELETE [Role] WHERE Id = @p0", role.Id);
                 await _context.SaveChangesAsync();
 
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -175,16 +166,14 @@ namespace Service.Implement.Authentication
             try
             {
                 _cacheManager.Remove(String.Format(KeyForCacheRoleById, role.Id));
-               
+
                 _context.Database.ExecuteSqlCommand("DELETE [Role] WHERE Id = @p0", role.Id);
-                 _context.SaveChanges();
+                _context.SaveChanges();
 
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -193,16 +182,14 @@ namespace Service.Implement.Authentication
             try
             {
                 _cacheManager.Remove(String.Format(KeyForCacheRoleById, role.Id));
-               
+
                 _context.Entry(role).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
 
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -211,16 +198,14 @@ namespace Service.Implement.Authentication
             try
             {
                 _cacheManager.Remove(String.Format(KeyForCacheRoleById, role.Id));
-               
+
                 _context.Entry(role).State = EntityState.Modified;
                 _context.SaveChanges();
 
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -241,12 +226,10 @@ namespace Service.Implement.Authentication
             {
                 _userRoleDbSet.Add(newUserRole);
                 await _context.SaveChangesAsync();
-             }
+            }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -266,9 +249,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -276,7 +257,7 @@ namespace Service.Implement.Authentication
         {
             if (String.IsNullOrEmpty(userId) || String.IsNullOrEmpty(roleId))
                 return;
-            
+
             try
             {
                 _context.Database.ExecuteSqlCommand("DELETE [dbo].[UserRole] where UserId = @p0 and RoleId=@p1",
@@ -285,9 +266,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -304,9 +283,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -323,9 +300,7 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
 
@@ -342,12 +317,10 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                //Trace.TraceError("There is error while updating data: " + dex.InnerException);
-                LogError("There is error while updating data: " + ex.Message, ex);
+                throw ex;
             }
         }
-        
+
         public async Task<List<Role>> GetRolesOfUserAsync(string userId)
         {
             try
@@ -358,9 +331,8 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetRolesOfUserAsync method from RoleService: " + ex.Message, ex);
                 throw ex;
-            }           
+            }
         }
 
         public List<Role> GetRolesOfUser(string userId)
@@ -373,9 +345,8 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetRolesOfUser method from RoleService: " + ex.Message, ex);
                 throw ex;
-            }         
+            }
         }
 
         public bool CheckUserIsInRole(string userId, Role role)
@@ -390,9 +361,8 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call CheckUserIsInRole method from RoleService: " + ex.Message, ex);
                 throw ex;
-            }        
+            }
         }
 
         public async Task<bool> CheckUserIsInRoleAsync(string userId, Role role)
@@ -407,7 +377,6 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call CheckUserIsInRoleAsync method from RoleService: " + ex.Message, ex);
                 throw ex;
             }
         }
@@ -425,9 +394,8 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call AddRoleToUserByRoleName method from RoleService: " + ex.Message, ex);
                 throw ex;
-            }            
+            }
         }
 
         public async Task AddRoleToUserByRoleNameAsync(string userId, string roleName, int organizationId)
@@ -442,9 +410,8 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call AddRoleToUserByRoleNameAsync method from RoleService: " + ex.Message, ex);
                 throw ex;
-            }  
+            }
         }
         private Role GetRoleByRoleName(string roleName)
         {
@@ -460,9 +427,8 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call GetRoleByRoleName method from RoleService: " + ex.Message, ex);
                 throw ex;
-            } 
+            }
         }
 
         public bool CheckUserIsInRoleByName(string userId, string roleName)
@@ -478,9 +444,8 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call CheckUserIsInRoleByName method from RoleService: " + ex.Message, ex);
                 throw ex;
-            }         
+            }
         }
 
         public async Task<bool> CheckUserIsInRoleByNameAsync(string userId, string roleName)
@@ -496,7 +461,6 @@ namespace Service.Implement.Authentication
             }
             catch (Exception ex)
             {
-                LogError("There is error while call CheckUserIsInRoleByNameAsync method from RoleService: " + ex.Message, ex);
                 throw ex;
             }
         }

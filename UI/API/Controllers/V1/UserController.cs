@@ -181,5 +181,23 @@ namespace API.Controllers.V1
                 return Error(ex.Message);
             }
         }
+
+        [Route("byname/{name}")]
+        [HttpPost]
+        public IHttpActionResult GetUserByName([FromUri]string name)
+        {
+            try
+            {
+                //var findUser = _userService.GetUserById();
+                //if (findUser != null)
+                //    return Success(findUser);
+
+                return Error("UserId not exist");
+            }
+            catch (Exception ex)
+            {
+                return Error(ex.Message);
+            }
+        }
     }
 }

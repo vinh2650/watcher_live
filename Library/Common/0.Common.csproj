@@ -107,18 +107,15 @@
     <Compile Include="Helpers\AsyncHelper.cs" />
     <Compile Include="Helpers\AzureHelper.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
-    <Compile Include="Helpers\Log4NetHelper.cs" />
     <Compile Include="Helpers\SecurityHelper.cs" />
     <Compile Include="Helpers\ServicebusHelper.cs" />
-    <Compile Include="Logs\DefaultLoggingService.cs" />
-    <Compile Include="Logs\INoisLoggingService.cs" />
-    <Compile Include="Logs\Log4NetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

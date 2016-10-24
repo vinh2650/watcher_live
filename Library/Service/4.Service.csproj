@@ -191,7 +191,6 @@
     <Compile Include="Implement\Authentication\RefreshTokenService.cs" />
     <Compile Include="Implement\Authentication\RoleService.cs" />
     <Compile Include="Implement\Authentication\UserService.cs" />
-    <Compile Include="Implement\BaseServiceWithLogging.cs" />
     <Compile Include="Implement\Business\RelationshipRequestService.cs" />
     <Compile Include="Implement\Business\RelationshipService.cs" />
     <Compile Include="Implement\Search\SearchEngine.cs" />

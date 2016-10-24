@@ -23,7 +23,7 @@ namespace Service.Interface.Authentication
         /// <summary>
         /// Create user async
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="users"></param>
         /// <returns></returns>
         Task CreateUsersAsync(List<User> users);
 
@@ -209,7 +209,7 @@ namespace Service.Interface.Authentication
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        Task<string> GetRoleByClaimAsync(string userId);
+        string GetRoleByClaimAsync(string userId);
 
         /// <summary>
         /// Get role by claim
@@ -217,23 +217,7 @@ namespace Service.Interface.Authentication
         /// <param name="userId"></param>
         /// <returns></returns>
         string GetRoleByClaim(string userId);
-
-
-        /// <summary>
-        /// set role to claim async
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="roleName"></param>
-        /// <returns></returns>
-        Task SetRoleToClaimAsync(string userId, string roleName);
-
-        /// <summary>
-        ///  set role to claim 
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="roleName"></param>
-        void SetRoleToClaim(string userId, string roleName);
-
+        
         #endregion
 
         #endregion
@@ -243,8 +227,7 @@ namespace Service.Interface.Authentication
         List<UserSimpleInfo> GetAllUser(string organizationId, bool? isEmailConfirmed);
 
         #endregion
-
-        List<User> GetUsersForNotification(string userId = null, string keyword = null);
+        
         List<User> GetUsersByEmails(List<string> idsList);
         
         void UpdateUserInfo(string id, string firstName, string lastName, string phoneNumber, List<string> permissions, int organizationId);

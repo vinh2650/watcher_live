@@ -271,7 +271,6 @@ E:\Watcher\watcher_live\Library\Service\bin\Debug\StackExchange.Redis.dll
 E:\Watcher\watcher_live\Library\Service\bin\Debug\StackExchange.Redis.Extensions.Core.dll
 E:\Watcher\watcher_live\Library\Service\bin\Debug\System.Net.Http.Formatting.dll
 E:\Watcher\watcher_live\Library\Service\bin\Debug\System.Spatial.dll
-E:\Watcher\watcher_live\Library\Service\bin\Debug\log4net.dll
 E:\Watcher\watcher_live\Library\Service\bin\Debug\Common.pdb
 E:\Watcher\watcher_live\Library\Service\bin\Debug\Core.pdb
 E:\Watcher\watcher_live\Library\Service\bin\Debug\Data.pdb
@@ -301,7 +300,6 @@ E:\Watcher\watcher_live\Library\Service\bin\Debug\StackExchange.Redis.xml
 E:\Watcher\watcher_live\Library\Service\bin\Debug\StackExchange.Redis.Extensions.Core.xml
 E:\Watcher\watcher_live\Library\Service\bin\Debug\System.Net.Http.Formatting.xml
 E:\Watcher\watcher_live\Library\Service\bin\Debug\System.Spatial.xml
-E:\Watcher\watcher_live\Library\Service\bin\Debug\log4net.xml
 E:\Watcher\watcher_live\Library\Service\bin\Debug\cs\FluentValidation.resources.dll
 E:\Watcher\watcher_live\Library\Service\bin\Debug\da\FluentValidation.resources.dll
 E:\Watcher\watcher_live\Library\Service\bin\Debug\de\FluentValidation.resources.dll

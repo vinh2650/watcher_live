@@ -2,7 +2,6 @@
 using API.Providers;
 using Autofac;
 using Autofac.Integration.WebApi;
-using Common.Logs;
 using Core.Domain.Authentication;
 using Data;
 using Microsoft.AspNet.Identity;
@@ -43,11 +42,7 @@ namespace API.App_Start
                 .As<ICacheManager>().InstancePerDependency();
 
             #endregion
-            #region logging
-            
-            builder.RegisterType<Log4NetService>()
-             .As<INoisLoggingService>().InstancePerDependency();
-            #endregion
+
             builder.RegisterType<AmsApplicationService>()
                .As<IAmsApplicationService>().InstancePerDependency();
 
