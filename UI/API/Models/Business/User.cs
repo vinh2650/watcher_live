@@ -1,4 +1,6 @@
-﻿using API.Validations.Business;
+﻿using System;
+using System.Collections.Generic;
+using API.Validations.Business;
 using FluentValidation.Attributes;
 
 namespace API.Models.Business
@@ -173,5 +175,25 @@ namespace API.Models.Business
         /// role of user
         /// </summary>
         public string Role { get; set; }
+    }
+
+    /// <summary>
+    /// Get list user by ids model
+    /// </summary>
+    public class GetListUserModel
+    {
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        public GetListUserModel()
+        {
+            Ids = new List<string>();
+        }
+
+        /// <summary>
+        /// List of user id
+        /// </summary>
+        public List<String> Ids { get; set; }
+
     }
 }

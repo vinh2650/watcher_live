@@ -951,6 +951,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:API.Controllers.V1.UserController.GetUsersByListId(API.Models.Business.GetListUserModel)">
+            <summary>
+            Get list of user by list ids
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.UserController.GetUserById(System.String)">
+            <summary>
+            Get list of user by list ids
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:API.Filters.ValidateRefreshTokenEverywhereAttribute">
             <summary>
             Use for checking user with claim
@@ -1598,6 +1610,21 @@
         <member name="P:API.Models.Business.UserGetAllResult.Role">
             <summary>
             role of user
+            </summary>
+        </member>
+        <member name="T:API.Models.Business.GetListUserModel">
+            <summary>
+            Get list user by ids model
+            </summary>
+        </member>
+        <member name="M:API.Models.Business.GetListUserModel.#ctor">
+            <summary>
+            Ctor
+            </summary>
+        </member>
+        <member name="P:API.Models.Business.GetListUserModel.Ids">
+            <summary>
+            List of user id
             </summary>
         </member>
         <member name="T:API.Models.JsonResult">

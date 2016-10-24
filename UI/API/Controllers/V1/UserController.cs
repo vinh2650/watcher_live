@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using API.Helpers;
 using API.Models.Business;
@@ -47,7 +49,7 @@ namespace API.Controllers.V1
         [SwaggerResponse(401, PermissionDontHave)]
         [SwaggerResponse(500, ServerError)]
         [SwaggerResponse(404, PageNotFound)]
-        public IHttpActionResult Regsiter(UserCreate model)
+        public IHttpActionResult Regsiter([FromBody]UserCreate model)
         {
             //init params
             var saltKey = CommonSecurityHelper.CreateSaltKey(5);
@@ -120,6 +122,64 @@ namespace API.Controllers.V1
                 Role = RoleSystemName.User
             };
             return Success(result);
+        }
+
+        /// <summary>
+        /// Get list of user by list ids
+        /// </summary>
+        /// <returns></returns>
+        [Route("ids")]
+        [HttpPost]
+        public IHttpActionResult GetUsersByListId([FromBody]GetListUserModel model)
+        {
+            try
+            {
+                var res = new List<User>();
+                var err = new List<String>();
+
+                foreach (var id in model.Ids)
+                {
+                    var findUser = _userService.GetUserById(id);
+                    if (findUser != null)
+                    {
+                        res.Add(findUser);
+                    }
+                    else
+                    {
+                        err.Add(id);
+                    }
+                }
+                if (err.Any())
+                    return Error(err);
+
+                return Success(res);
+            }
+            catch (Exception ex)
+            {
+                return Error(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Get list of user by list ids
+        /// </summary>
+        /// <returns></returns>
+        [Route("{userId}")]
+        [HttpPost]
+        public IHttpActionResult GetUserById([FromUri]string userId)
+        {
+            try
+            {
+                var findUser = _userService.GetUserById(userId);
+                if (findUser != null)
+                    return Success(findUser);
+                
+                return Error("UserId not exist");
+            }
+            catch (Exception ex)
+            {
+                return Error(ex.Message);
+            }
         }
     }
 }
