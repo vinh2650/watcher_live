@@ -108,14 +108,10 @@ namespace Service.Implement.Authentication
             {
                 return null;
             }
-            var result = _cacheManager.Get(String.Format(KeyForCacheRoleByApplicationAndName, name),
-                () =>
-                {
-                    var query = "SELECT * FROM [Role] WHERE Name=@p0";
-                    var res = _roleDbSet.SqlQuery(query, name).FirstOrDefault();
-                    return res;
-                });
-            return result;
+
+            var query = "SELECT * FROM [Role] WHERE Name=@p0";
+            var res = _roleDbSet.SqlQuery(query, name).FirstOrDefault();
+            return res;
         }
 
 

@@ -24,8 +24,7 @@ namespace Service.Implement.Authentication
             _userDbSet = _context.Set<User>();
             _userClaimDbSet = _context.Set<UserClaim>();
         }
-
-        #region user
+        
         public async Task CreateUserAsync(User user)
         {
             try
@@ -282,7 +281,6 @@ namespace Service.Implement.Authentication
                 throw ex;
             }
         }
-        #endregion
 
         #region claim
 
@@ -425,6 +423,7 @@ namespace Service.Implement.Authentication
                 throw ex;
             }
         }
+
         public User GetUserByUsername(string username)
         {
             try
@@ -444,6 +443,21 @@ namespace Service.Implement.Authentication
                 throw ex;
             }
         }
+
+        //public User GetUsersByKeyword(List<string> keywords)
+        //{
+        //    try
+        //    {
+        //        var query = "SELECT * FROM [User] WHERE Username = @p0";
+        //        var result = _userDbSet.SqlQuery(query, username).FirstOrDefault();
+
+        //        return result;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
         public Task<User> GetUserByUsernameAsync(string username)
         {
@@ -524,9 +538,7 @@ namespace Service.Implement.Authentication
                 throw ex;
             }
         }
-
-        #region custom function
-
+        
         public List<UserSimpleInfo> GetAllUser(string organizationId, bool? isEmailConfirmed)
         {
             try
@@ -591,8 +603,5 @@ namespace Service.Implement.Authentication
                 throw ex;
             }
         }
-
-        #endregion
-
     }
 }

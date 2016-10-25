@@ -937,13 +937,14 @@
             User controller
             </summary>
         </member>
-        <member name="M:API.Controllers.V1.UserController.#ctor(Service.Interface.Authentication.IUserService,Service.Interface.Authentication.IRoleService,Microsoft.AspNet.Identity.UserManager{Core.Domain.Authentication.User})">
+        <member name="M:API.Controllers.V1.UserController.#ctor(Service.Interface.Authentication.IUserService,Service.Interface.Authentication.IRoleService,Microsoft.AspNet.Identity.UserManager{Core.Domain.Authentication.User},Service.Interface.Search.IUserSearchService)">
             <summary>
             Ctor
             </summary>
             <param name="userService"></param>
             <param name="roleService"></param>
             <param name="userManager"></param>
+            <param name="userSearchService"></param>
         </member>
         <member name="M:API.Controllers.V1.UserController.Regsiter(API.Models.Business.UserCreate)">
             <summary>
@@ -961,6 +962,13 @@
             <summary>
             Get list of user by list ids
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.V1.UserController.GetUserByName(System.String)">
+            <summary>
+            Get User by name
+            </summary>
+            <param name="name"></param>
             <returns></returns>
         </member>
         <member name="T:API.Filters.ValidateRefreshTokenEverywhereAttribute">

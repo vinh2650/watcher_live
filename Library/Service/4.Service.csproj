@@ -194,13 +194,16 @@
     <Compile Include="Implement\Business\RelationshipRequestService.cs" />
     <Compile Include="Implement\Business\RelationshipService.cs" />
     <Compile Include="Implement\Search\SearchEngine.cs" />
+    <Compile Include="Implement\Search\UserSearchService.cs" />
     <Compile Include="Interface\Authentication\IAmsApplicationService.cs" />
     <Compile Include="Interface\Authentication\IRefreshTokenService.cs" />
     <Compile Include="Interface\Authentication\IRoleService.cs" />
     <Compile Include="Interface\Authentication\IUserService.cs" />
     <Compile Include="Interface\Business\IRelationshipRequestService.cs" />
     <Compile Include="Interface\Business\IRelationshipService.cs" />
+    <Compile Include="Interface\SearchModel\ESUserModel.cs" />
     <Compile Include="Interface\Search\ISearchEngine.cs" />
+    <Compile Include="Interface\Search\IUserSearchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -221,10 +224,7 @@
       <Name>2.Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Implement\AzureBlob\" />
-    <Folder Include="Interface\Media\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

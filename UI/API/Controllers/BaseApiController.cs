@@ -15,6 +15,7 @@ namespace API.Controllers
     /// </summary>
     [Authorize]
     [ValidateRefreshTokenEverywhere]
+    //[AllowAnonymous]
     public class BaseApiController : ApiController
     {
         #region constant

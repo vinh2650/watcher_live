@@ -72,7 +72,8 @@ namespace API.App_Start
             //Elasticsearch
             builder.RegisterType<SearchEngine>()
                 .As<ISearchEngine>().InstancePerDependency();
-
+            builder.RegisterType<UserSearchService>()
+                .As<IUserSearchService>().InstancePerDependency();
             #endregion
 
             return builder;

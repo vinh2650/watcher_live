@@ -8,6 +8,7 @@ using Common.Helpers;
 using Core.Domain.Authentication;
 using Microsoft.AspNet.Identity;
 using Service.Interface.Authentication;
+using Service.Interface.Search;
 using Swashbuckle.Swagger.Annotations;
 
 namespace API.Controllers.V1
@@ -19,6 +20,7 @@ namespace API.Controllers.V1
     public class UserController : BaseApiController
     {
         private readonly IUserService _userService;
+        private readonly IUserSearchService _userSearchService;
         private readonly UserManager<User> _userManager;
         private readonly IRoleService _roleService;
 
@@ -29,13 +31,16 @@ namespace API.Controllers.V1
         /// <param name="userService"></param>
         /// <param name="roleService"></param>
         /// <param name="userManager"></param>
+        /// <param name="userSearchService"></param>
         public UserController(IUserService userService,
             IRoleService roleService,
-            UserManager<User> userManager)
+            UserManager<User> userManager,
+            IUserSearchService userSearchService)
         {
             _userService = userService;
             _roleService = roleService;
             _userManager = userManager;
+            _userSearchService = userSearchService;
         }
 
 
@@ -93,7 +98,7 @@ namespace API.Controllers.V1
             try
             {
                 _userService.CreateUser(user);
-
+                _userSearchService.IndexUser(user);
                 //add role to user
                 _roleService.AddRoleToUser(user.Id, userRole.Id);
 
@@ -161,7 +166,7 @@ namespace API.Controllers.V1
         }
 
         /// <summary>
-        /// Get list of user by list ids
+        /// Get user by id
         /// </summary>
         /// <returns></returns>
         [Route("{userId}")]
@@ -173,7 +178,7 @@ namespace API.Controllers.V1
                 var findUser = _userService.GetUserById(userId);
                 if (findUser != null)
                     return Success(findUser);
-                
+
                 return Error("UserId not exist");
             }
             catch (Exception ex)
@@ -182,17 +187,23 @@ namespace API.Controllers.V1
             }
         }
 
+        /// <summary>
+        /// Get User by Nmae keyword
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         [Route("byname/{name}")]
         [HttpPost]
         public IHttpActionResult GetUserByName([FromUri]string name)
         {
             try
             {
-                //var findUser = _userService.GetUserById();
-                //if (findUser != null)
-                //    return Success(findUser);
+                var res = _userSearchService.SearchUserByKeyword(name);
 
-                return Error("UserId not exist");
+                if (res == null)
+                    return Error("UserId not exist");
+
+                return Success(res);
             }
             catch (Exception ex)
             {
