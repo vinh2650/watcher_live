@@ -43,7 +43,7 @@ namespace API.App_Start
 
             #endregion
 
-            builder.RegisterType<AmsApplicationService>()
+            builder.RegisterType<ApplicationService>()
                .As<IAmsApplicationService>().InstancePerDependency();
 
             builder.RegisterType<RefreshTokenService>()

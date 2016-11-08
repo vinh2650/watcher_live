@@ -13,7 +13,7 @@ namespace Service.Interface.Authentication
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<AmsApplication> GetByIdAsync(string id);
+        Task<Application> GetByIdAsync(string id);
 
 
 
@@ -23,21 +23,21 @@ namespace Service.Interface.Authentication
         /// </summary>
         /// <param name="amsApplication"></param>
         /// <returns></returns>
-        Task CreateApplicationAsync(AmsApplication amsApplication);
+        Task CreateApplicationAsync(Application amsApplication);
 
         /// <summary>
         /// Update application async
         /// </summary>
         /// <param name="amsApplication"></param>
         /// <returns></returns>
-        Task UpdateApplicationAsync(AmsApplication amsApplication);
+        Task UpdateApplicationAsync(Application amsApplication);
 
         /// <summary>
         /// Delete application async
         /// </summary>
         /// <param name="amsApplication"></param>
         /// <returns></returns>
-        Task DeleteApplicationAsync(AmsApplication amsApplication);
+        Task DeleteApplicationAsync(Application amsApplication);
 
 
         #endregion
@@ -47,30 +47,30 @@ namespace Service.Interface.Authentication
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        AmsApplication GetById(string id);
+        Application GetById(string id);
         /// <summary>
         /// Create application
         /// </summary>
         /// <param name="amsApplication"></param>
-        void CreateApplication(AmsApplication amsApplication);
+        void CreateApplication(Application amsApplication);
 
         /// <summary>
         /// Update application
         /// </summary>
         /// <param name="amsApplication"></param>
-        void UpdateApplication(AmsApplication amsApplication);
+        void UpdateApplication(Application amsApplication);
 
         /// <summary>
         /// Delete application
         /// </summary>
         /// <param name="amsApplication"></param>
 
-        void DeleteApplication(AmsApplication amsApplication);
+        void DeleteApplication(Application amsApplication);
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        List<AmsApplication> GetAllApplications();
+        List<Application> GetAllApplications();
     }
 }

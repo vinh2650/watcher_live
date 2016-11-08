@@ -10,7 +10,7 @@ namespace Data.Mapping.Authentication
 {
     
 
-    public class AmsApplicationMapping : EntityTypeConfiguration<AmsApplication>
+    public class AmsApplicationMapping : EntityTypeConfiguration<Application>
     {
         public AmsApplicationMapping()
         {

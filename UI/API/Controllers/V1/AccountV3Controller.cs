@@ -586,7 +586,7 @@ namespace API.Controllers.V1
         /// <param name="authorizationValidFunc"></param>
         /// <returns></returns>
         protected async Task<IHttpActionResult> CheckBaseToken(
-            Func<AmsApplication, Task<IHttpActionResult>> authorizationValidFunc)
+            Func<Application, Task<IHttpActionResult>> authorizationValidFunc)
         {
             var request = HttpContext.Current.Request;
             var authHeader = request.Headers["Authorization"];

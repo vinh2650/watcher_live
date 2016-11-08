@@ -117,5 +117,27 @@ namespace Service.Implement.Business
                 throw;
             }
         }
+
+        public bool CheckToUser(string fromUserId, string toUserId)
+        {
+            try
+            {
+                if (fromUserId == toUserId)
+                    return false;
+
+                var query = "SELECT * FROM Relationship WHERE FromUserId = @p0 AND ToUserId = @p1";
+                var res = _relationshipsDb.SqlQuery(query, fromUserId, toUserId).FirstOrDefault();
+                
+                if(res!=null)
+                    return false;
+
+                return true;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
     }
 }

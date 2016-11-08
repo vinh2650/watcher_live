@@ -65,5 +65,13 @@ namespace Service.Interface.Business
         /// <param name="userId"></param>
         /// <returns></returns>
         List<User> GetAllRelationshipPartners(string userId);
+
+        /// <summary>
+        /// Check if to user valid to create relation
+        /// </summary>
+        /// <param name="fromUserId"></param>
+        /// <param name="toUserId"></param>
+        /// <returns></returns>
+        bool CheckToUser(string fromUserId, string toUserId);
     }
 }

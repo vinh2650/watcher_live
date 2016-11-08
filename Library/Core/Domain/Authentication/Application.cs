@@ -6,7 +6,7 @@ namespace Core.Domain.Authentication
     /// <summary>
     /// Represent application inside our solution
     /// </summary>
-    public class AmsApplication : BaseEntity
+    public class Application : BaseEntity
     {
         #region general information
 

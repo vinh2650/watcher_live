@@ -115,7 +115,7 @@
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Constant.cs" />
-    <Compile Include="Domain\Authentication\AmsApplication.cs" />
+    <Compile Include="Domain\Authentication\Application.cs" />
     <Compile Include="Domain\Authentication\RefreshToken.cs" />
     <Compile Include="Domain\Authentication\Role.cs" />
     <Compile Include="Domain\Authentication\User.cs" />

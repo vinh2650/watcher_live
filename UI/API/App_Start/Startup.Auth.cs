@@ -15,9 +15,9 @@ namespace API
     /// </summary>
     public partial class Startup
     {
-        private static AmsApplicationService createamsApplicationService(AutofacWebApiDependencyResolver resolver)
+        private static ApplicationService createamsApplicationService(AutofacWebApiDependencyResolver resolver)
         {
-            var amsApplicationService = resolver.GetService(typeof(IAmsApplicationService)) as AmsApplicationService;
+            var amsApplicationService = resolver.GetService(typeof(IAmsApplicationService)) as ApplicationService;
             return amsApplicationService;
         }
         /// <summary>

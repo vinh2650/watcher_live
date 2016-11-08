@@ -54,22 +54,28 @@ namespace API.Controllers.V1
         {
             try
             {
+                //Get current suer id
                 var currentUser = User.GetValueOfClaim(ClaimName.UseridKey);
 
-                var findPartner = _userService.GetUserById(model.ToUserId);
-                if (findPartner == null)
-                    return Error("Cannot find partner");
-
-                var request = new RelationshipRequest()
+                if (_relationshipService.CheckToUser(currentUser, model.ToUserId))
                 {
-                    FromUserId = currentUser,
-                    ToUserId = model.ToUserId,
-                    Type = model.Type
-                };
+                    //Get to user data
+                    var findPartner = _userService.GetUserById(model.ToUserId);
+                    if (findPartner == null)
+                        return Error("Cannot find partner");
 
-                _relationshipRequestService.CreateRequest(request);
+                    var request = new RelationshipRequest()
+                    {
+                        FromUserId = currentUser,
+                        ToUserId = model.ToUserId,
+                        Type = model.Type
+                    };
 
-                return Created(model.ToUserId);
+                    _relationshipRequestService.CreateRequest(request);
+
+                    return Created(model.ToUserId);
+                }
+                return Error("Taget user a not valid");
             }
             catch (Exception ex)
             {

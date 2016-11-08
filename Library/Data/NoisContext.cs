@@ -52,10 +52,10 @@ namespace Data
         protected override void Seed(NoisContext context)
         {
             var secret = Guid.NewGuid().ToString();
-            var applications = new List<AmsApplication>
+            var applications = new List<Application>
             {
 
-              new AmsApplication
+              new Application
               {
                   AppSecret =CommonSecurityHelper.GetHash(secret),
                   EncryptSecret = CommonSecurityHelper.Encrypt(secret, CommonSecurityHelper.KeyEncrypt),
@@ -68,7 +68,7 @@ namespace Data
               }
             };
 
-            var appDbSets = context.Set<AmsApplication>();
+            var appDbSets = context.Set<Application>();
             appDbSets.AddRange(applications);
             context.SaveChanges();
             

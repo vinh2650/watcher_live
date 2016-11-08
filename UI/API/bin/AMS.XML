@@ -836,7 +836,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:API.Controllers.V1.AccountV3Controller.CheckBaseToken(System.Func{Core.Domain.Authentication.AmsApplication,System.Threading.Tasks.Task{System.Web.Http.IHttpActionResult}})">
+        <member name="M:API.Controllers.V1.AccountV3Controller.CheckBaseToken(System.Func{Core.Domain.Authentication.Application,System.Threading.Tasks.Task{System.Web.Http.IHttpActionResult}})">
             <summary>
             
             </summary>
@@ -960,13 +960,13 @@
         </member>
         <member name="M:API.Controllers.V1.UserController.GetUserById(System.String)">
             <summary>
-            Get list of user by list ids
+            Get user by id
             </summary>
             <returns></returns>
         </member>
         <member name="M:API.Controllers.V1.UserController.GetUserByName(System.String)">
             <summary>
-            Get User by name
+            Get User by Nmae keyword
             </summary>
             <param name="name"></param>
             <returns></returns>

@@ -9,23 +9,23 @@ using Service.Interface.Authentication;
 
 namespace Service.Implement.Authentication
 {
-    public class AmsApplicationService : IAmsApplicationService
+    public class ApplicationService : IAmsApplicationService
     {
         private readonly DbContext _context;
-        private readonly DbSet<AmsApplication> _dbSet;
+        private readonly DbSet<Application> _dbSet;
         private readonly ICacheManager _cacheManager;
 
         private const string KeyForCacheDms = "Dms.Application.Id.{0}";
 
-        public AmsApplicationService(DbContext context, ICacheManager cacheManager)
+        public ApplicationService(DbContext context, ICacheManager cacheManager)
         {
             _context = context;
             _cacheManager = cacheManager;
-            _dbSet = _context.Set<AmsApplication>();
+            _dbSet = _context.Set<Application>();
 
         }
 
-        public async Task<AmsApplication> GetByIdAsync(string id)
+        public async Task<Application> GetByIdAsync(string id)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace Service.Implement.Authentication
                 throw ex;
             }
         }
-        public async Task CreateApplicationAsync(AmsApplication amsApplication)
+        public async Task CreateApplicationAsync(Application amsApplication)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace Service.Implement.Authentication
 
         }
 
-        public async Task UpdateApplicationAsync(AmsApplication amsApplication)
+        public async Task UpdateApplicationAsync(Application amsApplication)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace Service.Implement.Authentication
             }
         }
 
-        public async Task DeleteApplicationAsync(AmsApplication amsApplication)
+        public async Task DeleteApplicationAsync(Application amsApplication)
         {
             try
             {
@@ -100,7 +100,7 @@ namespace Service.Implement.Authentication
             }
         }
 
-        public AmsApplication GetById(string id)
+        public Application GetById(string id)
         {
             try
             {
@@ -126,7 +126,7 @@ namespace Service.Implement.Authentication
             }
 
         }
-        public void CreateApplication(AmsApplication amsApplication)
+        public void CreateApplication(Application amsApplication)
         {
             try
             {
@@ -141,7 +141,7 @@ namespace Service.Implement.Authentication
             }
         }
 
-        public void UpdateApplication(AmsApplication amsApplication)
+        public void UpdateApplication(Application amsApplication)
         {
             try
             {
@@ -157,7 +157,7 @@ namespace Service.Implement.Authentication
             }
         }
 
-        public void DeleteApplication(AmsApplication amsApplication)
+        public void DeleteApplication(Application amsApplication)
         {
             try
             {
@@ -173,13 +173,13 @@ namespace Service.Implement.Authentication
             }
         }
 
-        public List<AmsApplication> GetAllApplications()
+        public List<Application> GetAllApplications()
         {
             try
             {
                 // Create and execute raw SQL query.
                 var query = "SELECT * FROM AmsApplication";
-                var result = _context.Database.SqlQuery<AmsApplication>(query);
+                var result = _context.Database.SqlQuery<Application>(query);
                 return result.ToList();
             }
             catch (Exception ex)
