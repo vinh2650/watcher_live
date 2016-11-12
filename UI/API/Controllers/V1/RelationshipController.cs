@@ -26,8 +26,6 @@ namespace API.Controllers.V1
         /// Ctor
         /// </summary>
         /// <param name="userService"></param>
-        /// <param name="workContext"></param>
-        /// <param name="roleService"></param>
         /// <param name="relationshipService"></param>
         /// <param name="relationshipRequestService"></param>
         public RelationshipController(
@@ -41,12 +39,13 @@ namespace API.Controllers.V1
         }
 
         /// <summary>
-        /// Create new relationship, return partner Id
+        /// create new relationship request
         /// </summary>
+        /// <param name="model">create relationship request</param>
         /// <returns></returns>
         [Route("request/new")]
         [HttpPost]
-        [SwaggerResponse(200, "", typeof(string))]
+        [SwaggerResponse(200, "")]
         [SwaggerResponse(401, "Unauthorize")]
         [SwaggerResponse(500, "Internal Error")]
         [SwaggerResponse(404, "Not Found")]
@@ -57,13 +56,17 @@ namespace API.Controllers.V1
                 //Get current suer id
                 var currentUser = User.GetValueOfClaim(ClaimName.UseridKey);
 
+                //check targe user is valid 
+                //user cannot make relation with him/herself
+                //also can not make relation with same user twice
                 if (_relationshipService.CheckToUser(currentUser, model.ToUserId))
                 {
-                    //Get to user data
+                    //Get to target user data
                     var findPartner = _userService.GetUserById(model.ToUserId);
                     if (findPartner == null)
                         return Error("Cannot find partner");
 
+                    //prepair relaionship request
                     var request = new RelationshipRequest()
                     {
                         FromUserId = currentUser,
@@ -71,6 +74,7 @@ namespace API.Controllers.V1
                         Type = model.Type
                     };
 
+                    //save new relation ship to sql db
                     _relationshipRequestService.CreateRequest(request);
 
                     return Created(model.ToUserId);
@@ -84,32 +88,35 @@ namespace API.Controllers.V1
         }
 
         /// <summary>
-        /// Create new relationship, return partner Id
+        /// confirm request to create a new relationship
+        /// only when target user ( user receive request ) cofirm request, relation will be created
         /// </summary>
+        /// <param name="requestId">id of request</param>
         /// <returns></returns>
-        [Route("request/confirm/{Id}")]
+        [Route("request/confirm/{requestId}")]
         [HttpPost]
         [SwaggerResponse(200, "", typeof(string))]
         [SwaggerResponse(401, "Unauthorize")]
         [SwaggerResponse(500, "Internal Error")]
         [SwaggerResponse(404, "Not Found")]
-        public IHttpActionResult ConfirmNewRelationship([FromUri] string Id)
+        public IHttpActionResult ConfirmNewRelationship([FromUri] string requestId)
         {
             try
             {
-                var findRequest = _relationshipRequestService.GetRequestById(Id);
+                //find relation ship request by Id
+                var findRequest = _relationshipRequestService.GetRequestById(requestId);
                 if (findRequest == null)
-                {
                     return Error("Request not found");
-                }
 
+                //create relationship
+                //one for current user
                 var newRelationshipFrom = new Relationship()
                 {
                     FromUserId = findRequest.FromUserId,
                     ToUserId = findRequest.ToUserId,
                     Type = findRequest.Type
                 };
-
+                //one for target user
                 var newRelationshipTo = new Relationship()
                 {
                     ToUserId = findRequest.FromUserId,
@@ -117,8 +124,10 @@ namespace API.Controllers.V1
                     Type = findRequest.Type
                 };
 
+                //save relation to sql data
                 _relationshipService.CreateRelationship(newRelationshipFrom);
                 _relationshipService.CreateRelationship(newRelationshipTo);
+                //remvoe relationship request
                 _relationshipRequestService.RemoveRequest(findRequest);
 
                 return Success("Succesfully create new relationship");
@@ -130,7 +139,7 @@ namespace API.Controllers.V1
         }
 
         /// <summary>
-        /// Get all pending request
+        /// get all pending request that have been send to current user
         /// </summary>
         /// <returns></returns>
         [Route("reuqest/pending")]
@@ -143,8 +152,9 @@ namespace API.Controllers.V1
         {
             try
             {
+                //get current userId
                 var currentUserId = User.GetValueOfClaim(ClaimName.UseridKey);
-
+                //get all pending request
                 var res = _relationshipRequestService.GetAllPendingRequestOfUser(currentUserId);
 
                 return Ok(res);
@@ -156,8 +166,9 @@ namespace API.Controllers.V1
         }
 
         /// <summary>
-        /// Get request by Id
+        /// get request by id
         /// </summary>
+        /// <param name="id">id of request</param>
         /// <returns></returns>
         [Route("reuqest/{id}")]
         [HttpGet]
@@ -169,8 +180,9 @@ namespace API.Controllers.V1
         {
             try
             {
-                var currentUserId = User.GetValueOfClaim(ClaimName.UseridKey);
-
+                //todo install some code to secure
+                //todo current user can only request belong to him/her
+                //get request by id
                 var res = _relationshipRequestService.GetRequestById(id);
 
                 return Ok(res);
@@ -182,7 +194,7 @@ namespace API.Controllers.V1
         }
 
         /// <summary>
-        /// Get all sent request
+        /// get all all sent request, sent by current user
         /// </summary>
         /// <returns></returns>
         [Route("reuqest/sent")]
@@ -195,8 +207,9 @@ namespace API.Controllers.V1
         {
             try
             {
+                //get current userId
                 var currentUserId = User.GetValueOfClaim(ClaimName.UseridKey);
-
+                //get all sent request
                 var res = _relationshipRequestService.GetAllSentRequestIfUser(currentUserId);
 
                 return Ok(res);
@@ -208,24 +221,25 @@ namespace API.Controllers.V1
         }
 
         /// <summary>
-        /// Delete a relationship
+        /// remove a request
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="requestId">request id</param>
         /// <returns></returns>
-        [Route("{id}")]
+        [Route("{requestId}")]
         [HttpDelete]
         [SwaggerResponse(200, "")]
         [SwaggerResponse(401, "Unauthorize")]
         [SwaggerResponse(500, "Internal Error")]
         [SwaggerResponse(404, "Not Found")]
-        public IHttpActionResult DeleteRelationshipById([FromUri] string id)
+        public IHttpActionResult DeleteRelationshipById([FromUri] string requestId)
         {
             try
             {
-                var findRela = _relationshipService.GetRelationshipById(id);
+                //find request by Id
+                var findRela = _relationshipService.GetRelationshipById(requestId);
                 if (findRela == null)
                     return Error("Relationship not found");
-
+                //remove request
                 _relationshipService.DeleteRelationship(findRela);
 
                 return Deleted();
@@ -238,7 +252,7 @@ namespace API.Controllers.V1
 
 
         /// <summary>
-        /// Delete relationship by partner Id
+        /// remove relationship by partner Id
         /// </summary>
         /// <param name="partnerId"></param>
         /// <returns></returns>
@@ -252,12 +266,13 @@ namespace API.Controllers.V1
         {
             try
             {
+                //get current user id
                 var currentUserId = User.GetValueOfClaim(ClaimName.UseridKey);
-
+                //find relation between current user nad parner
                 var findRela = _relationshipService.GetRelationshipByPartnerId(currentUserId, partnerId);
                 if (findRela == null)
                     return Error("Relationship not found");
-
+                //remove the relationship
                 _relationshipService.DeleteRelationship(findRela);
 
                 return Deleted();
@@ -269,7 +284,7 @@ namespace API.Controllers.V1
         }
 
         /// <summary>
-        /// Get all of user relationship
+        /// get all relationship of current user
         /// </summary>
         /// <returns></returns>
         [Route("")]
@@ -282,8 +297,9 @@ namespace API.Controllers.V1
         {
             try
             {
+                //get currentuser id
                 var currentUserId = User.GetValueOfClaim(ClaimName.UseridKey);
-
+                //get all relation of currentuser
                 var res = _relationshipService.GetAllRelationships(currentUserId);
 
                 return Ok(res);
@@ -294,8 +310,10 @@ namespace API.Controllers.V1
             }
         }
 
-        /// Get all of user relationship by Type
+        /// <summary>
+        /// get all relation of input type
         /// </summary>
+        /// <param name="type"></param>
         /// <returns></returns>
         [Route("type/{type}")]
         [HttpGet]
@@ -307,8 +325,9 @@ namespace API.Controllers.V1
         {
             try
             {
+                //get current user id
                 var currentUserId = User.GetValueOfClaim(ClaimName.UseridKey);
-
+                //get all relationship by type
                 var res = _relationshipService.GetAllRelationshipsByType(currentUserId, type);
 
                 return Ok(res);

@@ -57,6 +57,7 @@ namespace Service.Implement.Search
         {
             try
             {
+                //prepair search body
                 var body = "{\"size\":" + 10000 + "," +
                             "\"query\":" +
                                 "{" +

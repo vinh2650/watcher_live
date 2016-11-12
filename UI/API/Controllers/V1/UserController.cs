@@ -45,8 +45,9 @@ namespace API.Controllers.V1
 
 
         /// <summary>
-        /// Register a new user
+        /// register a new user
         /// </summary>
+        /// <param name="model">user create request</param>
         /// <returns></returns>
         [Route("register")]
         [AllowAnonymous]
@@ -60,7 +61,7 @@ namespace API.Controllers.V1
             var saltKey = CommonSecurityHelper.CreateSaltKey(5);
             //var currentPassword = Guid.NewGuid().ToString("N").Substring(0, 8);
             var userRole = _roleService.GetRoleByName(RoleSystemName.User);
-
+            //check match of password
             if (model.Passwords != model.ConfirmPasswords)
                 return Error("Your passwords does match");
 
@@ -130,8 +131,9 @@ namespace API.Controllers.V1
         }
 
         /// <summary>
-        /// Get list of user by list ids
+        /// get list of user by list of user id
         /// </summary>
+        /// <param name="model">get list user request</param>
         /// <returns></returns>
         [Route("ids")]
         [HttpPost]
@@ -139,21 +141,21 @@ namespace API.Controllers.V1
         {
             try
             {
+                //prepair list result
                 var res = new List<User>();
-                var err = new List<String>();
+                //prepair list of error
+                var err = new List<string>();
 
                 foreach (var id in model.Ids)
                 {
+                    //get user by id
                     var findUser = _userService.GetUserById(id);
                     if (findUser != null)
-                    {
                         res.Add(findUser);
-                    }
                     else
-                    {
                         err.Add(id);
-                    }
                 }
+                //if any error exist then return error
                 if (err.Any())
                     return Error(err);
 
@@ -166,8 +168,9 @@ namespace API.Controllers.V1
         }
 
         /// <summary>
-        /// Get user by id
+        /// get user by id
         /// </summary>
+        /// <param name="userId">user id</param>
         /// <returns></returns>
         [Route("{userId}")]
         [HttpPost]
@@ -188,9 +191,10 @@ namespace API.Controllers.V1
         }
 
         /// <summary>
-        /// Get User by Nmae keyword
+        /// get user by name key work
+        /// use to search when typing
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">name keywork</param>
         /// <returns></returns>
         [Route("byname/{name}")]
         [HttpPost]
@@ -198,8 +202,8 @@ namespace API.Controllers.V1
         {
             try
             {
+                //get user by name keywork
                 var res = _userSearchService.SearchUserByKeyword(name);
-
                 if (res == null)
                     return Error("UserId not exist");
 
