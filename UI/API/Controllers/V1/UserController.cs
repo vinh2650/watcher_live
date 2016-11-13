@@ -60,7 +60,10 @@ namespace API.Controllers.V1
             //init params
             var saltKey = CommonSecurityHelper.CreateSaltKey(5);
             //var currentPassword = Guid.NewGuid().ToString("N").Substring(0, 8);
-            var userRole = _roleService.GetRoleByName(RoleSystemName.User);
+            
+            //todo no need for user role yet, maybe will impl later
+            //var userRole = _roleService.GetRoleByName(RoleSystemName.User);
+            
             //check match of password
             if (model.Passwords != model.ConfirmPasswords)
                 return Error("Your passwords does match");
@@ -98,10 +101,13 @@ namespace API.Controllers.V1
             //create user
             try
             {
+                //save user to sql db
                 _userService.CreateUser(user);
+                //index user to es server
                 _userSearchService.IndexUser(user);
-                //add role to user
-                _roleService.AddRoleToUser(user.Id, userRole.Id);
+
+                ////add role to user
+                //_roleService.AddRoleToUser(user.Id, userRole.Id);
 
                 ////get template email
                 //var headerEmail = "New account has been created for you";
