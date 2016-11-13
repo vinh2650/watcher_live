@@ -60,10 +60,10 @@ namespace API.Controllers.V1
             //init params
             var saltKey = CommonSecurityHelper.CreateSaltKey(5);
             //var currentPassword = Guid.NewGuid().ToString("N").Substring(0, 8);
-            
+
             //todo no need for user role yet, maybe will impl later
             //var userRole = _roleService.GetRoleByName(RoleSystemName.User);
-            
+
             //check match of password
             if (model.Passwords != model.ConfirmPasswords)
                 return Error("Your passwords does match");
@@ -89,7 +89,6 @@ namespace API.Controllers.V1
                 UserName = model.Email,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                OrganizationDestinationId = model.OrganizationDestinationId,
                 Phone = model.PhoneNumber,
                 DigitCodeHash = CommonSecurityHelper.CreatePasswordHash(currentPassword, saltKey),
                 SaltDigitCodeHash = saltKey,
@@ -129,9 +128,7 @@ namespace API.Controllers.V1
                 Email = model.Email,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                OrganizationDestinationId = model.OrganizationDestinationId,
-                PhoneNumber = model.PhoneNumber,
-                Role = RoleSystemName.User
+                PhoneNumber = model.PhoneNumber
             };
             return Success(result);
         }

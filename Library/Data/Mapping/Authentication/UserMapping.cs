@@ -12,7 +12,7 @@ namespace Data.Mapping.Authentication
             this.HasKey(t => t.Id);
             // Table & Column Mappings
             this.ToTable("User");
-            this.HasMany(t => t.UserRoles).WithRequired(t => t.User).HasForeignKey(t => t.UserId);
+            //this.HasMany(t => t.UserRoles).WithRequired(t => t.User).HasForeignKey(t => t.UserId);
 
             this.HasMany(t => t.Relationships).WithRequired(t => t.User).HasForeignKey(t => t.FromUserId);
 

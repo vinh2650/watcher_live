@@ -107,6 +107,10 @@
     <Compile Include="Migrations\201609181019040_Add_RelationshipRequest.Designer.cs">
       <DependentUpon>201609181019040_Add_RelationshipRequest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611130431190_RemoveUserRoleFromUser.cs" />
+    <Compile Include="Migrations\201611130431190_RemoveUserRoleFromUser.Designer.cs">
+      <DependentUpon>201611130431190_RemoveUserRoleFromUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NoisContext.cs" />
@@ -131,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609181019040_Add_RelationshipRequest.resx">
       <DependentUpon>201609181019040_Add_RelationshipRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611130431190_RemoveUserRoleFromUser.resx">
+      <DependentUpon>201611130431190_RemoveUserRoleFromUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

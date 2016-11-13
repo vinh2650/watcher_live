@@ -366,7 +366,6 @@
   <ItemGroup>
     <Content Include="App_Data\CellConfiguration\log.txt" />
     <Content Include="App_Data\databaseUpgradeByCodeFirst.txt" />
-    <Content Include="App_Data\KpiFiles\log.txt" />
     <Content Include="App_Data\StoreProcedure\ProcessAlarm.sql" />
     <Content Include="App_Data\StoreProcedure\EnhancedSP.sql" />
     <Content Include="App_Data\StoreProcedure\SP for paging.sql" />

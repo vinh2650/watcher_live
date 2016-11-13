@@ -32,11 +32,6 @@ namespace API.Models.Business
         public string PhoneNumber { get; set; }
 
         /// <summary>
-        /// organization destination id of user
-        /// </summary>
-        public string OrganizationDestinationId { get; set; }
-
-        /// <summary>
         /// Passwords
         /// </summary>
         public string Passwords { get; set; }

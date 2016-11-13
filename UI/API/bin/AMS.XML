@@ -1492,11 +1492,6 @@
             phone number of user
             </summary>
         </member>
-        <member name="P:API.Models.Business.UserCreate.OrganizationDestinationId">
-            <summary>
-            organization destination id of user
-            </summary>
-        </member>
         <member name="P:API.Models.Business.UserCreate.Passwords">
             <summary>
             Passwords

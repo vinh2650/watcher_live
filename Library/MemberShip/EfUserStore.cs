@@ -16,7 +16,7 @@ namespace Membership
                         IUserRoleStore<User>, 
                         IUserPasswordStore<User>,
                         IUserLockoutStore<User,string>,
-                        IUserTwoFactorStore<User,string>,
+                        //IUserTwoFactorStore<User,string>,
                         IUserEmailStore<User,string>
     {
 
@@ -196,16 +196,16 @@ namespace Membership
             return Task.FromResult(0);
         }
 
-        public Task SetTwoFactorEnabledAsync(User user, bool enabled)
-        {
-            user.TwoFactorEnabled = enabled;
-            return Task.FromResult(0);
-        }
+        //public Task SetTwoFactorEnabledAsync(User user, bool enabled)
+        //{
+        //    user.TwoFactorEnabled = enabled;
+        //    return Task.FromResult(0);
+        //}
 
-        public Task<bool> GetTwoFactorEnabledAsync(User user)
-        {
-            return Task.FromResult(user.TwoFactorEnabled);
-        }
+        //public Task<bool> GetTwoFactorEnabledAsync(User user)
+        //{
+        //    return Task.FromResult(user.TwoFactorEnabled);
+        //}
 
         public Task SetEmailAsync(User user, string email)
         {

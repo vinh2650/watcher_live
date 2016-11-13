@@ -105,27 +105,17 @@ namespace Core.Domain.Authentication
         /// <summary>
         /// 
         /// </summary>
-        public bool TwoFactorEnabled { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public bool IsEmailConfirmed { get; set; }
-
-        /// <summary>
-        /// indicate user was created to a organization
-        /// </summary>
-        public string OrganizationDestinationId { get; set; }
 
         /// <summary>
         /// indicate user was created by other user
         /// </summary>
         public string ParentId { get; set; }
 
-        /// <summary>
-        /// eager load user role
-        /// </summary>
-        public ICollection<UserRole> UserRoles { get; set; }
+        ///// <summary>
+        ///// eager load user role
+        ///// </summary>
+        //public ICollection<UserRole> UserRoles { get; set; }
 
         /// <summary>
         /// Relation ship

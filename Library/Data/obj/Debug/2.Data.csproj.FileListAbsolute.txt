@@ -103,3 +103,4 @@ E:\Watcher\watcher_live\Library\Data\obj\Debug\Data.Migrations.Add_RelationshipR
 E:\Watcher\watcher_live\Library\Data\obj\Debug\2.Data.csproj.GenerateResource.Cache
 E:\Watcher\watcher_live\Library\Data\obj\Debug\Data.dll
 E:\Watcher\watcher_live\Library\Data\obj\Debug\Data.pdb
+E:\Watcher\watcher_live\Library\Data\obj\Debug\Data.Migrations.RemoveUserRoleFromUser.resources
