@@ -876,62 +876,70 @@
             Ctor
             </summary>
             <param name="userService"></param>
-            <param name="workContext"></param>
-            <param name="roleService"></param>
             <param name="relationshipService"></param>
             <param name="relationshipRequestService"></param>
         </member>
         <member name="M:API.Controllers.V1.RelationshipController.CreateNewRelationship(API.Models.Business.RelationshipModel)">
             <summary>
-            Create new relationship, return partner Id
+            create new relationship request
             </summary>
+            <param name="model">create relationship request</param>
             <returns></returns>
         </member>
         <member name="M:API.Controllers.V1.RelationshipController.ConfirmNewRelationship(System.String)">
             <summary>
-            Create new relationship, return partner Id
+            confirm request to create a new relationship
+            only when target user ( user receive request ) cofirm request, relation will be created
             </summary>
+            <param name="requestId">id of request</param>
             <returns></returns>
         </member>
         <member name="M:API.Controllers.V1.RelationshipController.GetAllPendingRequest">
             <summary>
-            Get all pending request
+            get all pending request that have been send to current user
             </summary>
             <returns></returns>
         </member>
         <member name="M:API.Controllers.V1.RelationshipController.GetPendingRequestById(System.String)">
             <summary>
-            Get request by Id
+            get request by id
             </summary>
+            <param name="id">id of request</param>
             <returns></returns>
         </member>
         <member name="M:API.Controllers.V1.RelationshipController.GetAllSentRequest">
             <summary>
-            Get all sent request
+            get all all sent request, sent by current user
             </summary>
             <returns></returns>
         </member>
         <member name="M:API.Controllers.V1.RelationshipController.DeleteRelationshipById(System.String)">
             <summary>
-            Delete a relationship
+            remove a request
             </summary>
-            <param name="id"></param>
+            <param name="requestId">request id</param>
             <returns></returns>
         </member>
         <member name="M:API.Controllers.V1.RelationshipController.DeleteRelationshipByPartnerId(System.String)">
             <summary>
-            Delete relationship by partner Id
+            remove relationship by partner Id
             </summary>
             <param name="partnerId"></param>
             <returns></returns>
         </member>
         <member name="M:API.Controllers.V1.RelationshipController.GetAllRelationship">
             <summary>
-            Get all of user relationship
+            get all relationship of current user
             </summary>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:API.Controllers.V1.RelationshipController.GetAllRelationshipByType(Core.Domain.Business.Relationshiptype)" -->
+        <member name="M:API.Controllers.V1.RelationshipController.GetAllRelationshipByType(Core.Domain.Business.Relationshiptype)">
+            <summary>
+            get all relation of input type
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
         <member name="T:API.Controllers.V1.UserController">
             <summary>
             User controller
@@ -948,27 +956,31 @@
         </member>
         <member name="M:API.Controllers.V1.UserController.Regsiter(API.Models.Business.UserCreate)">
             <summary>
-            Register a new user
+            register a new user
             </summary>
+            <param name="model">user create request</param>
             <returns></returns>
         </member>
         <member name="M:API.Controllers.V1.UserController.GetUsersByListId(API.Models.Business.GetListUserModel)">
             <summary>
-            Get list of user by list ids
+            get list of user by list of user id
             </summary>
+            <param name="model">get list user request</param>
             <returns></returns>
         </member>
         <member name="M:API.Controllers.V1.UserController.GetUserById(System.String)">
             <summary>
-            Get user by id
+            get user by id
             </summary>
+            <param name="userId">user id</param>
             <returns></returns>
         </member>
         <member name="M:API.Controllers.V1.UserController.GetUserByName(System.String)">
             <summary>
-            Get User by Nmae keyword
+            get user by name key work
+            use to search when typing
             </summary>
-            <param name="name"></param>
+            <param name="name">name keywork</param>
             <returns></returns>
         </member>
         <member name="T:API.Filters.ValidateRefreshTokenEverywhereAttribute">

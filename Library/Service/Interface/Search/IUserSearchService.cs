@@ -19,8 +19,8 @@ namespace Service.Interface.Search
         /// <summary>
         /// Search user by name keyword
         /// </summary>
-        /// <param name="keywords"></param>
+        /// <param name="keywords">list of name keyword</param>
         /// <returns></returns>
-        esResultModel<esUserData> SearchUserByKeyword(string keywords);
+        esResultModel<esUserData> SearchUserByKeyword(List<string> keywords);
     }
 }

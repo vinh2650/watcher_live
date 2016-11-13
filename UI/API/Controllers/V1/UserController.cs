@@ -202,8 +202,9 @@ namespace API.Controllers.V1
         {
             try
             {
+                var listKeywork = name.Split(' ').ToList();
                 //get user by name keywork
-                var res = _userSearchService.SearchUserByKeyword(name);
+                var res = _userSearchService.SearchUserByKeyword(listKeywork);
                 if (res == null)
                     return Error("UserId not exist");
 

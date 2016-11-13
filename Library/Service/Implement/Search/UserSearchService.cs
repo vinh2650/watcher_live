@@ -53,10 +53,15 @@ namespace Service.Implement.Search
             }
         }
 
-        public esResultModel<esUserData> SearchUserByKeyword(string keywords)
+        public esResultModel<esUserData> SearchUserByKeyword(List<string> keywords)
         {
             try
             {
+                var listKeyworkStr = keywords.Select(key => "{\"wildcard\":{\"firstname\":\"*" + key + "*\"}}," +
+                                                            "{\"wildcard\":{\"lastname\":\"*" + key + "*\"}}").ToList();
+
+                var keyworkStr = String.Join(",", listKeyworkStr);
+
                 //prepair search body
                 var body = "{\"size\":" + 10000 + "," +
                             "\"query\":" +
@@ -69,8 +74,7 @@ namespace Service.Implement.Search
                                                         "{" +
                                                             "\"should\":" +
                                                                 "[" +
-                                                                    "{\"wildcard\":{\"firstname\":\"*" + keywords + "*\"}}," +
-                                                                    "{\"wildcard\":{\"lastname\":\"*" + keywords + "*\"}}" +
+                                                                    keyworkStr +
                                                                 "]" +
                                                             "}" +
                                                         "}" +
